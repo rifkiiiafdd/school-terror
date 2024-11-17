@@ -5,6 +5,8 @@
 image bg blck = "images/pantai.jpg"
 image bg cls = "images/cls1.jpg"
 image bg kantin = "images/kantin.jpg"
+image bg teras = "images/teras.jpg"
+image bg ruang_guru = "images/ruang_guru.jpg"
 image nanda biasa = "images/nanda.png"
 image nanda sedih = "images/nanda.png"
 image nanda makan = "images/gadismakan.png"
@@ -21,6 +23,7 @@ define nanda = Character("Nanda", color="#eea8ea")
 define azka = Character("Azka",color = "#62a0d2")
 define teman = Character("Classmates", color = "#747171")
 define ibu = Character("Ibu", color = "#0a0807")
+define guru = Character("Guru", color = "#0a0807")
 
 # Game dimulai disini.
 label start:
@@ -159,6 +162,49 @@ label eskalasi:
         nanda "Kenapa mereka membenci kami hanya karena kami dari keluarga nelayan?"
         
         "..."
+
+label ruangan_guru :
+    scene bg ruang_guru
+    pause
+    show nanda sedih at left
+    nanda "Selamat pagi bu, maaf mengganggu"
+    show guru biasa at right
+    guru "Ada apa, Nanda? Kamu terlihat sedih."
+    nanda "Bu, aku selalu dibully oleh teman-teman di sekolah."
+    guru "Oh tidak, siapa yang melakukan itu?"
+    nanda "Aku tidak tahu nama mereka, tapi mereka selalu mengejek dan menghinaku."
+    guru "Itu tidak bisa dibiarkan. Ibu akan mencari tahu siapa mereka. Tapi kamu juga harus berani, Nanda."
+    nanda "Berani bagaimana, Bu?"
+    guru "Berani untuk tidak membiarkan mereka merendahkanmu. Tunjukkan bahwa kamu kuat dan tidak takut."
+    nanda "Tapi, Bu, itu sulit..."
+    guru "Ibu tahu, tapi kamu tidak sendiri. Ibu dan teman-teman yang baik akan selalu mendukungmu."
+
+    if tahu_alasan:
+        nanda "Terima kasih, Bu. Aku akan mencoba."
+        hide guru biasa
+        nanda "pasti tidak semua orang membenci keluarga nelayan sepertiku"
+        nanda "Aku harus mencari teman seperti itu"
+        hide nanda sedih
+    else :
+        nanda "Mereka.."
+        nanda "Mereka semua tanpa alasan membully ku karena aku anak nelayan"
+        nanda "Aku benci itu"
+        guru "Nanda, jangan berkata seperti itu. Semua pekerjaan itu mulia"
+        guru "jangan khawatir, ibu akan memarahi mereka"
+        hide guru biasa
+        nanda "{i}Ibu tidak mengerti{/i}"
+        nanda "{i}Ku rasa tidak ada yang bisa kupercaya{/i}"
+        hide nanda sedih
+    jump di_teras_sekolah
+
+label di_teras_sekolah:
+    scene bg teras
+    pause
+    show nanda biasa at left 
+    pause
+    show azka biasa at right
+    azka "Hai, cantik"
+
 
 
     
