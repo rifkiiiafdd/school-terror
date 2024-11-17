@@ -6,8 +6,12 @@ image bg blck = "images/pantai.jpg"
 image bg cls = "images/cls1.jpg"
 image bg kantin = "images/kantin.jpg"
 image nanda biasa = "images/nanda.png"
+image nanda sedih = "images/nanda.png"
 image nanda makan = "images/gadismakan.png"
+image ibu khawatir = "images/nanda.png"
+image ibu gembira = "images/nanda.png"
 image classmates = "images/classmate.png"
+image bg rumah = "images/rumah1.jpg"
 image azka biasa = "images/azka.png"
 image meja = "images/meja.png"
 
@@ -15,6 +19,7 @@ image meja = "images/meja.png"
 define nanda = Character("Nanda", color="#eea8ea")
 define azka = Character("Azka",color = "#62a0d2")
 define teman = Character("Classmates", color = "#747171")
+define ibu = Character("Ibu", color = "#f8ff7b")
 
 # Game dimulai disini.
 label start:
@@ -72,26 +77,40 @@ label kantin:
             jump ikanlezat
     
     label nantang:
-        "Dan mereka pun berkelahi"
-        jump masih_kantin
+        teman "Lah? Nantangin?"
+        $ nantang = True
+        "Lalu mereka pun berkelahi hebat"
+        jump sepulang_sekolah
     
     label ikanlezat:
-        teman "nyennyene"
-        jump masih_kantin
-    
-    label masih_kantin :
-        "Hubungan mereka semakin memburuk"
-    stop music
+        $ nantang = False
+        teman "iihhhh, pantesan kamu bau amis"
+        nanda "..."
+        jump sepulang_sekolah
 
-label eskalasi:
-    scene bg cls
-    show nanda biasa at left 
+label sepulang_sekolah:
+    scene bg rumah
     pause
-    show meja at center
+    show nanda sedih at left
     pause
-    nanda "Kenapa mereka membenci kami hanya karena kami dari keluarga nelayan?"
-    hide meja
-    "..."
+    if nantang:
+        show ibu khawatir at right
+        ibu "Nanda, kamu pulang sih, tapi kenapa kamu masih sedih?"
+    else :
+        show ibu gembira at right
+        ibu "Bagaimana hari pertama sekolahmu, nak"
+        nanda "Tidak apa-apa, bu"
+    
+
+# label eskalasi:
+#     scene bg cls
+#     show nanda biasa at left 
+#     pause
+#     show meja at center
+#     pause
+#     nanda "Kenapa mereka membenci kami hanya karena kami dari keluarga nelayan?"
+#     hide meja
+#     "..."
 
 
     
