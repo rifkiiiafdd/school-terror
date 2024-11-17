@@ -123,7 +123,7 @@ define config.window_hide_transition = Dissolve(.2)
 ## Sementara angka yang lain adalah berapa karakter per detik yang akan di
 ## tampilkan.
 
-default preferences.text_cps = 0
+default preferences.text_cps = 35
 
 
 ## Delay default otomatis-maju. Nomor yang lebih besar berujung kepada waktu
