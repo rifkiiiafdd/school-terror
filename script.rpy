@@ -9,6 +9,8 @@ image bg teras = "images/teras.jpg"
 image bg ruang_guru = "images/ruang_guru.jpg"
 image nanda biasa = "images/nanda.png"
 image nanda sedih = "images/nanda.png"
+image nanda kaget = "images/nanda.png"
+image azka kaget = "images/nanda.png"
 image nanda makan = "images/gadismakan.png"
 image ibu khawatir = "images/nanda.png"
 image ibu gembira = "images/nanda.png"
@@ -63,10 +65,11 @@ label classroom1 :
         jump menyapa_done
 
     label menyapa_done:
-        show nanda biasa at left
+        "Classmates" "..."
 
 label kantin:
     scene bg kantin
+    pause
     show nanda makan at left 
     pause
     show classmates at right
@@ -203,18 +206,103 @@ label di_teras_sekolah:
     show nanda biasa at left 
     pause
     show azka biasa at right
-    azka "Hai, cantik"
+    pause
+    azka "Hai, apakah kamu tidak apa-apa?"
+    $ azka_berteman = True
+    nanda "..."
+    azka "Aku sering melihat apa yang mereka lakukan padamu. Tenang saja, aku tidak sama seperti mereka, ayahku juga sering memancing."
+    if tahu_alasan:
+        nanda "Aku tidak apa-apa, kok, terima kasih ya."
+        azka "aku tahu kok, berita tentang organisasi itu"
+        nanda "ehh, benarkah?"
+        azka "iya, aku sebenarnya juga melihat kalau organisasi itu bisa saja ikut andil dalam perlakuan buruk yang teman-teman sekelasmu lakukan di sini"
+        nanda "aku juga menduga seperti itu.."
+        "(Nanda mendapat teman pertamanya)"
+        jump azka_ngobrol
+    
+    else :
+        menu :
+            "ramah":
+                nanda "aku tidak apa-apa, kok, terima kasih"
+                nanda  "aku sering merasa sendirian di sini, nama kamu siapa?"
+                azka "Namaku azka, senang berkenalan denganmu!"
+                azka "aku tahu kok, berita tentang organisasi itu"
+                nanda "oh ya.."
+                azka " iya, aku sebenarnya juga melihat kalau organisasi itu bisa saja ikut andil dalam perlakuan buruk yang teman-teman sekelasmu lakukan di sin"
+                nanda "begitu ya.."
+                nanda "aku juga menduga seperti itu"
+                jump azka_ngobrol
+        
+            "dingin" :
+                nanda "Oh iya, aku tidak apa-apa, senang bertemu kamu, tapi aku ada urusan, aku pergi dulu ya"
+                azka "Oh, baik, sampai bertemu, ya!"
+                "(Dan begitulah Nanda kehilangan satu-satunya kesempatan mendapatkan teman baru)"
+                $ azka_ikut = False
+                $ azka_berteman = False
+                jump rumah2
 
-
-
+            
+label azka_ngobrol :
+    azka " lengkapnya, mau ngobrol tentang itu gak sehabis sekolah?"
+    menu :
+        "Terima Ajakan":
+            nanda "Boleh"
+            $ azka_ikut = True
+            jump rumah2
+        
+        "Tolak Ajakan":
+            nanda "Maaf, aku ada urusan"
+            $ azka_ikut = False
+            jump rumah2
     
 
 
+label rumah2:
+    hide azka biasa
+    hide nanda biasa
+    pause
+    scene bg rumah
+    pause
+    if azka_ikut :
+        show nanda biasa at left
+        pause
+        show azka biasa at right
+        pause
+        nanda "Jadi, kamu mau ngobrolin apa?"
+        pause 
+        azka "Aku mungkin tau sedikit hal tentang PWAS...."
+        azka "..."
+        pause
+        hide azka biasa
+        hide nanda biasa
+        show nanda kaget at left
+        show azka kaget at right 
+        "DOR DOR DOR *\ (suara pintu diketuk)"
+        "(Sebelum Azka dapat bercerita, tiba2 pintu depan rumah Nanda didobrak paksa)"
+        "..." "Keluar kau nelayan bau amis"
+        azka "Sial, mereka datang kesini"
+        azka "ayo lari"
+        hide nanda kaget
+        hide azka kaget
+        "(Nanda dan Azka berhasil menyelinap kabur melalui jendela)"
+        "Mereka tak berhenti berlari ketakutan sampai tiba di suatu gubuk???? (cttn programmer : mau ngapain heyy, sus banget)"
+    
+    else :
+        show nanda biasa at left
+        nanda "Hari ini sungguh menyebalkan"
+        nanda "..."
+        pause 
+        hide nanda biasa
+        show nanda kaget at left 
+        "DOR DOR DOR *\ (suara pintu diketuk)"
+        "..." "Keluar kau nelayan bau amis"
+        nanda "hah, apa yang terjadi?"
+        nanda "aku tidak bisa menghadapi mereka"
+        hide nanda kaget
+        "(Nanda berhasil menyelinap kabur melalui jendela)"
 
+    
 
+        
 
-
-
-
-
-
+    
