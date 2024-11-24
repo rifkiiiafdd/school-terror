@@ -31,6 +31,15 @@ image azka khawatir = "images/azka.png"
 image azka ragu = "images/azka.png"
 image azka serius = "images/azka.png"
 image azka tajam = "images/azka.png"
+image ayah_azka menghela_napas = "images/ayah_azka.jpg"
+image ayah_azka tersenyum = "images/ayah_azka.jpg"
+image azka memohon = "images/azka.png"
+image nanda tenang = "images/nanda.png"
+image nanda tersenyum = "images/nanda.png"
+image bg aula_desa = "images/aula_desa.jpg"
+image bg sekolah_hari = "images/sekolah_hari.jpg"
+image bg laut_senja = "images/laut_senja.jpg"
+
 
 # Deklarasikan karakter yang digunakan di game.
 define nanda = Character("Nanda", color="#eea8ea")
@@ -39,7 +48,7 @@ define teman = Character("Classmates", color = "#747171")
 define ibu = Character("Ibu", color = "#0a0807")
 define guru = Character("Guru", color = "#0a0807")
 define ayah = Character("Ayah", color = "#0a0807")
-define ayah_azka = Character("Ayah_azka", color = "#0a0807")
+define ayah_azka = Character("Ayah azka", color = "#0a0807")
 
 # Game dimulai disini.
 label start:
@@ -408,7 +417,40 @@ label rumah_azka:
     show nanda berani at center
     nanda "Om, keluarga saya memang nelayan, itu benar. Tapi kami nggak cuma kerja untuk cari uang, kami juga jaga laut yang kami andalkan untuk hidup."
     nanda "Ayah saya ikut gerakan pembersihan pantai, kami nggak pernah ambil ikan secara berlebihan, dan kami ngajarin anak-anak di desa untuk nggak buang sampah ke laut."
-    
+    show ayah_azka tajam at right
+    ayah_azka "Kamu tahu, Nanda? Dulu hidup saya pernah sulit karena orang-orang nelayan di kampung saya. Tapi mungkin... saya sudah terlalu lama menyimpan kebencian itu."
+
+    show nanda tenang at center
+    nanda "Saya nggak tahu apa yang Om alami dulu, tapi satu hal yang saya tahu, kebencian itu nggak akan membuat Om lebih bahagia. Kita cuma ingin hidup, Om, sama seperti semua orang."
+    show azka memohon at left
+    azka "Ayah, aku mohon. Kita bisa belajar lihat orang dari hatinya, bukan dari pekerjaannya."
+    show ayah_azka menghela_napas at right
+    ayah_azka "(Menghela napas panjang) Kamu benar, Azka... Nanda. Mungkin saya salah selama ini."
+
+    show nanda tersenyum at center
+    nanda "(Tersenyum, lega) Terima kasih, Om. Saya harap ke depannya, Om bisa melihat kami sebagai teman, bukan musuh."
+    hide ayah_azka menghela_napas
+    hide azka memohon
+    hide nanda tersenyum
+    show ayah_azka tersenyum at right
+    ayah_azka "(Tersenyum)Terima kasih, Nanda. Saya harus keluar sebentar untuk mengurus sesuatu."
+    hide ayah_azka tersenyum
+    show azka biasa at left
+    azka "Ayah, mau ke mana?"
+    show ayah_azka biasa at right
+    ayah_azka "Ada sesuatu yang perlu saya lakukan. Kamu akan mengerti nanti."
+    hide ayah_azka biasa
+    pause
+
+    scene bg aula_desa with fade
+    "Ayah Azka kemudian mengurus pembubaran kelompok PWAS, yang selama ini mengganggu ketenangan para nelayan di desa."
+
+    scene bg sekolah_hari with fade
+    "Di sekolah, Nanda berhasil mengubah persepsi teman-temannya tentang keluarga nelayan. Perlahan, kelas menjadi lebih toleran terhadap mereka yang sebelumnya dianggap berbeda."
+
+    scene bg laut_senja with fade
+    "Keluarga Nanda akhirnya terbebas dari ancaman dan teror. Mereka dapat hidup dengan tenang, menjaga laut dengan penuh cinta seperti yang selalu mereka lakukan."
+    return
 
         
 
