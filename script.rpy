@@ -85,20 +85,29 @@ label kantin:
     scene bg kantin
     pause
     show nanda makan at left 
-    pause
-    show classmates at right
+    nanda "Ikan bandeng masakan ibu tidak pernah mengecewakan"
+    hide nanda makan
+    show classmates at center
     teman "Lah, kenapa kamu makan ikan? Itu menjijikkan, mana mungkin kamu makan makhluk hidup dari laut."
+    hide classmates
+    hide nanda makan
     menu:
         "Kenapa memangnya? ":
+            show nanda berani at left
             nanda "Kenapa memangnya?"
+            hide nanda berani
             jump nantang
 
         "Ikan itu lezat dan sehat tau!":
+            show nanda biasa at left
             nanda "Ikan itu lezat dan sehat tau!"
+            hide nanda biasa
             jump ikanlezat
     
     label nantang:
+        show classmates at center
         teman "Lah? Nantangin?"
+        hide classmates 
         $ nantang = True
         "Lalu mereka pun berkelahi hebat"
         jump sepulang_sekolah
@@ -112,22 +121,24 @@ label kantin:
 label sepulang_sekolah:
     scene bg rumah
     pause
-    show nanda sedih at left
-    pause
     if nantang:
         show ibu khawatir at right
-        ibu "Nanda, kamu pulang sih, tapi kenapa kamu masih sedih?"
+        ibu "Nanda, kamu pulang sih, tapi kenapa kamu kelihatan sedih?"
+        hide ibu khawatir
         
         menu:
             "...":
+                show nanda sedih at left
                 nanda "..."
                 hide ibu khawatir
+                hide nanda sedih
                 show tv at right 
                 "TV dalam keadaan menyala, sedang menayangkan acara berita"
                 "reporter" '"Sebuah organisasi yang bermotif dari kebencian akan makanan laut, Perkumpulan Warga Anti Seafood, PWAS, makin meresahkan warga setempat"'
                 "reporter" '"kabarnya, pergerakan radikal organisasi ini mulai meluas pada tiap kalangan"'
                 hide tv
-                show ibu khawatir at right 
+                # show ibu khawatir at right 
+                show nanda sedih at left
                 nanda "{i}Jadi ini alasan aku dirundung{/i}"
                 $ tahu_alasan = True
                 jump kamar_nanda
@@ -135,6 +146,7 @@ label sepulang_sekolah:
             
             "Tidak apa-apa bu":
                 $ tahu_alasan = False
+                show nanda sedih at left
                 nanda "Tidak apa-apa bu"
                 hide ibu khawatir
                 hide nanda sedih
@@ -145,9 +157,10 @@ label sepulang_sekolah:
         $ tahu_alasan = False
         show ibu gembira at right
         ibu "Bagaimana hari pertama sekolahmu, nak"
+        hide ibu gembira
+        show nanda sedih at left
         nanda "Tidak apa-apa, bu"
         hide nanda sedih
-        hide ibu gembira
         jump kamar_nanda
     
     label kamar_nanda:
@@ -185,30 +198,53 @@ label ruangan_guru :
     pause
     show nanda sedih at left
     nanda "Selamat pagi bu, maaf mengganggu"
+    hide nanda sedih
     show guru biasa at right
     guru "Ada apa, Nanda? Kamu terlihat sedih."
+    hide guru biasa
+    show nanda biasa at left
     nanda "Bu, aku selalu dibully oleh teman-teman di sekolah."
+    hide nanda biasa
+    show guru biasa at right 
     guru "Oh tidak, siapa yang melakukan itu?"
+    hide guru biasa
+    show nanda sedih at left
     nanda "Aku tidak tahu nama mereka, tapi mereka selalu mengejek dan menghinaku."
+    hide nanda sedih
+    show guru biasa at right
     guru "Itu tidak bisa dibiarkan. Ibu akan mencari tahu siapa mereka. Tapi kamu juga harus berani, Nanda."
+    hide guru biasa
+    show nanda sedih at left
     nanda "Berani bagaimana, Bu?"
+    hide nanda sedih
+    show guru biasa at right
     guru "Berani untuk tidak membiarkan mereka merendahkanmu. Tunjukkan bahwa kamu kuat dan tidak takut."
+    hide guru biasa
+    show nanda sedih at left
     nanda "Tapi, Bu, itu sulit..."
+    hide nanda sedih
+    show guru biasa at right
     guru "Ibu tahu, tapi kamu tidak sendiri. Ibu dan teman-teman yang baik akan selalu mendukungmu."
 
     if tahu_alasan:
-        nanda "Terima kasih, Bu. Aku akan mencoba."
         hide guru biasa
+        show nanda sedih at left
+        nanda "Terima kasih, Bu. Aku akan mencoba."
         nanda "pasti tidak semua orang membenci keluarga nelayan sepertiku"
         nanda "Aku harus mencari teman seperti itu"
         hide nanda sedih
     else :
+        hide guru biasa
+        show nanda sedih at left
         nanda "Mereka.."
         nanda "Mereka semua tanpa alasan membully ku karena aku anak nelayan"
         nanda "Aku benci itu"
+        hide nanda sedih
+        show guru biasa at right
         guru "Nanda, jangan berkata seperti itu. Semua pekerjaan itu mulia"
         guru "jangan khawatir, ibu akan memarahi mereka"
         hide guru biasa
+        show nanda sedih at left
         nanda "{i}Ibu tidak mengerti{/i}"
         nanda "{i}Ku rasa tidak ada yang bisa kupercaya{/i}"
         hide nanda sedih
@@ -216,20 +252,34 @@ label ruangan_guru :
 
 label di_teras_sekolah:
     scene bg teras
-    pause
-    show nanda biasa at left 
+    # pause
+    # show nanda biasa at left 
     pause
     show azka biasa at right
     pause
     azka "Hai, apakah kamu tidak apa-apa?"
     $ azka_berteman = True
+    hide azka biasa
+    show nanda biasa at left
     nanda "..."
+    hide nanda biasa
+    show azka biasa at right
     azka "Aku sering melihat apa yang mereka lakukan padamu. Tenang saja, aku tidak sama seperti mereka, ayahku juga sering memancing."
+    hide azka biasa
     if tahu_alasan:
+        show nanda biasa at left
         nanda "Aku tidak apa-apa, kok, terima kasih ya."
+        hide nanda biasa
+        show azka biasa at right
         azka "aku tahu kok, berita tentang organisasi itu"
+        hide azka biasa
+        show nanda kaget at left
         nanda "ehh, benarkah?"
+        hide nanda kaget
+        show azka biasa at right
         azka "iya, aku sebenarnya juga melihat kalau organisasi itu bisa saja ikut andil dalam perlakuan buruk yang teman-teman sekelasmu lakukan di sini"
+        hide azka biasa
+        show nanda biasa at left
         nanda "aku juga menduga seperti itu.."
         "(Nanda mendapat teman pertamanya)"
         jump azka_ngobrol
@@ -237,63 +287,79 @@ label di_teras_sekolah:
     else :
         menu :
             "ramah":
+                show nanda biasa at left
                 nanda "aku tidak apa-apa, kok, terima kasih"
                 nanda  "aku sering merasa sendirian di sini, nama kamu siapa?"
+                hide nanda biasa
+                show azka biasa at right
                 azka "Namaku azka, senang berkenalan denganmu!"
                 azka "aku tahu kok, berita tentang organisasi itu"
+                hide azka biasa
+                show nanda kaget at left
                 nanda "oh ya.."
+                hide nanda kaget
+                show azka biasa at right
                 azka " iya, aku sebenarnya juga melihat kalau organisasi itu bisa saja ikut andil dalam perlakuan buruk yang teman-teman sekelasmu lakukan di sin"
+                hide azka biasa
+                show nanda biasa at left
                 nanda "begitu ya.."
                 nanda "aku juga menduga seperti itu"
+                hide nanda biasa
                 jump azka_ngobrol
         
             "dingin" :
+                show nanda biasa at left
                 nanda "Oh iya, aku tidak apa-apa, senang bertemu kamu, tapi aku ada urusan, aku pergi dulu ya"
+                hide nanda biasa
+                show azka biasa at right
                 azka "Oh, baik, sampai bertemu, ya!"
+                hide azka biasa
                 "(Dan begitulah Nanda kehilangan satu-satunya kesempatan mendapatkan teman baru)"
                 $ azka_ikut = False
                 $ azka_berteman = False
                 jump rumah2
            
 label azka_ngobrol :
+    show azka biasa at right
     azka " lengkapnya, mau ngobrol tentang itu gak sehabis sekolah?"
+    hide azka biasa
     menu :
         "Terima Ajakan":
+            show nanda biasa at left
             nanda "Boleh"
+            nanda "aku juga ingin tahu lebih banyak tentang organisasi itu"
+            hide nanda biasa
             $ azka_ikut = True
             jump rumah2
         
         "Tolak Ajakan":
+            show nanda biasa at left
             nanda "Maaf, aku ada urusan"
+            hide nanda biasa
             $ azka_ikut = False
             jump rumah2
 
 label rumah2:
     hide azka biasa
     hide nanda biasa
-    pause
     scene bg rumah
     pause
     if azka_ikut :
         show nanda biasa at left
-        pause
-        show azka biasa at right
-        pause
         nanda "Jadi, kamu mau ngobrolin apa?"
-        pause 
+        hide nanda biasa
+        show azka biasa at right
         azka "Aku mungkin tau sedikit hal tentang PWAS...."
         azka "..."
-        pause
         hide azka biasa
-        hide nanda biasa
         show nanda kaget at left
         show azka kaget at right 
-        "DOR DOR DOR *\ (suara pintu diketuk)"
+        "DOR DOR DOR \n  (suara pintu diketuk)"
         "(Sebelum Azka dapat bercerita, tiba2 pintu depan rumah Nanda didobrak paksa)"
         "..." "Keluar kau nelayan bau amis"
+        hide nanda kaget
         azka "Sial, mereka datang kesini"
         azka "ayo lari"
-        hide nanda kaget
         hide azka kaget
         "(Nanda dan Azka berhasil menyelinap kabur melalui jendela)"
         "Mereka tak berhenti berlari ketakutan sampai tiba di suatu gubuk???? (cttn programmer : mau ngapain heyy, sus banget)"
