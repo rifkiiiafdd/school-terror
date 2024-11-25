@@ -7,25 +7,28 @@ image bg cls = "images/cls1.jpg"
 image bg kantin = "images/kantin.jpg"
 image bg teras = "images/teras.jpg"
 image bg ruang_guru = "images/ruang_guru.jpg"
-image nanda biasa = "images/nanda.png"
-image nanda sedih = "images/nanda.png"
-image nanda kaget = "images/nanda.png"
-image azka kaget = "images/nanda.png"
-image nanda makan = "images/gadismakan.png"
-image ibu khawatir = "images/nanda.png"
-image ibu gembira = "images/nanda.png"
+image nanda biasa = "images/nandabiasa.png"
+image nanda sedih = "images/MC_Unsure.png"
+image nanda luka = "images/nandaluka.png"
+image nanda kaget = "images/nandabiasa.png"
+image azka kaget = "images/azka.png"
+image nanda makan = "images/nandamakan.png"
+image ibu khawatir = "images/ibubiasa.png"
+image ibu biasa = "images/ibubiasa.png"
+image ibu gembira = "images/ibubiasa.png"
 image ayah biasa = "images/azka.png"
-image classmates = "images/classmate.png"
+image classmates = "images/nandamirror.png"
 image bg rumah = "images/rumah1.jpg"
 image azka biasa = "images/azka.png"
 image azka sedih = "images/azka.png"
+image guru biasa = "images/guru.png"
 image bg rumah_azka = "images/rumah_azka.jpg"
 image ayah_azka biasa = "images/ayah_azka.jpg"
 image ayah_azka tajam = "images/ayah_azka.jpg"
-image nanda diam = "images/nanda.png"
+image nanda diam = "images/nandabiasa.png"
 image azka ragu = "images/azka.png"
-image nanda berani = "images/nanda.png"
-image meja = "images/meja.png"
+image nanda berani = "images/nandabiasa.png"
+image meja = "images/broketable.png"
 image tv = "images/tv.png"
 image azka khawatir = "images/azka.png"
 image azka ragu = "images/azka.png"
@@ -34,10 +37,11 @@ image azka tajam = "images/azka.png"
 image ayah_azka menghela_napas = "images/ayah_azka.jpg"
 image ayah_azka tersenyum = "images/ayah_azka.jpg"
 image azka memohon = "images/azka.png"
-image nanda tenang = "images/nanda.png"
-image nanda tersenyum = "images/nanda.png"
+image nanda tenang = "images/nandabiasa.png"
+image nanda tersenyum = "images/nandagembira.png"
 image bg aula_desa = "images/aula_desa.jpg"
 image bg sekolah_hari = "images/sekolah_hari.jpg"
+image bg sekolah= "images/sekolah.jpg"
 image bg laut_senja = "images/laut_senja.jpg"
 
 
@@ -62,7 +66,7 @@ label start:
     jump classroom1
 
 label classroom1 :
-    scene bg cls
+    scene bg sekolah
     # play music "clas_music.ogg" fadeout 1 fadein 1
     
     pause
@@ -137,17 +141,17 @@ label sepulang_sekolah:
         
         menu:
             "...":
-                show nanda sedih at left
+                show nanda luka at left
                 nanda "..."
                 hide ibu khawatir
-                hide nanda sedih
+                hide nanda luka
                 show tv at right 
                 "TV dalam keadaan menyala, sedang menayangkan acara berita"
                 "reporter" '"Sebuah organisasi yang bermotif dari kebencian akan makanan laut, Perkumpulan Warga Anti Seafood, PWAS, makin meresahkan warga setempat"'
                 "reporter" '"kabarnya, pergerakan radikal organisasi ini mulai meluas pada tiap kalangan"'
                 hide tv
                 # show ibu khawatir at right 
-                show nanda sedih at left
+                show nanda luka at left
                 nanda "{i}Jadi ini alasan aku dirundung{/i}"
                 $ tahu_alasan = True
                 jump kamar_nanda
@@ -155,10 +159,10 @@ label sepulang_sekolah:
             
             "Tidak apa-apa bu":
                 $ tahu_alasan = False
-                show nanda sedih at left
+                show nanda luka at left
                 nanda "Tidak apa-apa bu"
                 hide ibu khawatir
-                hide nanda sedih
+                hide nanda luka
                 
                 jump kamar_nanda
 
@@ -176,9 +180,10 @@ label sepulang_sekolah:
         scene bg rumah
         "Nanda masuk ke kamar"
         if nantang :
-            show nanda sedih at left
+            show nanda luka at left
             nanda "(Menangis)"
             nanda "{i}Sepertinya aku harus lebih ramah kepada orang lain{i}"
+            hide nanda luka
     
         else :
             show nanda sedih at left
