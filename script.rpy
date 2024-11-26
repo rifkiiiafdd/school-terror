@@ -376,8 +376,7 @@ label rumah2:
         azka "ayo lari"
         hide azka kaget
         "(Nanda dan Azka berhasil menyelinap kabur melalui jendela)"
-        "Mereka tak berhenti berlari ketakutan sampai tiba di suatu gubuk???? (cttn programmer : mau ngapain heyy, sus banget)"
-    
+        "Mereka tak berhenti berlari ketakutan sampai tiba di suatu gubuk
     else :
         show nanda biasa at left
         nanda "Hari ini sungguh menyebalkan"
@@ -507,7 +506,7 @@ label rumah_azka:
     ayah_azka "(Tersenyum)Terima kasih, Nanda. Saya harus keluar sebentar untuk mengurus sesuatu."
     hide ayah_azka tersenyum
     show azka biasa at left
-    azka "Ayah, mau ke mana?"
+    azka "Ayah, mau ke mana?"   
     show ayah_azka biasa at right
     ayah_azka "Ada sesuatu yang perlu saya lakukan. Kamu akan mengerti nanti."
     hide ayah_azka biasa
