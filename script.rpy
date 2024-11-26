@@ -368,7 +368,7 @@ label rumah2:
         hide azka biasa
         show nanda kaget at left
         show azka kaget at right 
-        "DOR DOR DOR \n  (suara pintu diketuk)"
+        "DOR DOR DOR \n (suara pintu diketuk)"
         "(Sebelum Azka dapat bercerita, tiba2 pintu depan rumah Nanda didobrak paksa)"
         "..." "Keluar kau nelayan bau amis"
         hide nanda kaget
@@ -376,7 +376,7 @@ label rumah2:
         azka "ayo lari"
         hide azka kaget
         "(Nanda dan Azka berhasil menyelinap kabur melalui jendela)"
-        "Mereka tak berhenti berlari ketakutan sampai tiba di suatu gubuk
+        "Mereka tak berhenti berlari ketakutan sampai tiba di suatu gubuk"
     else :
         show nanda biasa at left
         nanda "Hari ini sungguh menyebalkan"
