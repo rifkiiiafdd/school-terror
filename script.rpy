@@ -53,24 +53,28 @@ define ibu = Character("Ibu", color = "#0a0807")
 define guru = Character("Guru", color = "#0a0807")
 define ayah = Character("Ayah", color = "#0a0807")
 define ayah_azka = Character("Ayah azka", color = "#0a0807")
+define classmates = Character("Classmates", color = "#747171")
 
 # Game dimulai disini.
 label start:
-    scene bg blck   
-    play music "orison.ogg" fadein 1 fadeout 1
+    scene bg blck  
+    play music "scene 1 pantai.ogg" fadein 1 fadeout 3
+    play sound "scene 1 insturment.ogg" fadein 1 fadeout 1     
+
     "Di suatu desa kecil di tepi pantai,..\ "
     "hidup seorang anak yang setiap harinya membantu kedua orang tuanya.."
     "ayah seorang nelayan, dan ibu seorang pedagang ikan."
     "Bagi mereka, laut adalah kehidupan."
-    # stop music
+    stop music
     jump classroom1
 
 label classroom1 :
-    scene bg sekolah
-    # play music "clas_music.ogg" fadeout 1 fadein 1
+    stop music
+    scene bg sekolah with fade
+    play music "scene 2 & 5 (kelas kantin).ogg" fadein 0.5 fadeout 1 volume 0.01
     
     pause
-    "Classmates" "Bukankah dia anak nelayan itu? Orang-orang seperti mereka bau amis"
+    classmates "Bukankah dia anak nelayan itu? Orang-orang seperti mereka bau amis"
     pause
     show nanda biasa at left
     
@@ -84,26 +88,39 @@ label classroom1 :
     label menyapa:
         show nanda biasa at left
         nanda "Hai,.. Selamat pagi"
+        hide nanda biasa
+        classmates "Eh, kamu yang anak nelayan ya?? Kamu bau amis habisnya!"
         jump menyapa_done
 
     label tidak_menyapa:
         show nanda biasa at left
         nanda "..."
+        hide nanda biasa
+        classmates "“eh anak nelayannya dateng, tuh”"
         jump menyapa_done
 
     label menyapa_done:
-        "Classmates" "..."
+        stop sound 
+        play sound "scene 2 abis dikatain bau ikan.ogg" fadein 1 fadeout 6
+        show nanda biasa at left
+        nanda "Hah,..."
+        nanda "Apa yang salah dengan aku?"
+        
+        pause
 
 label kantin:
-    scene bg kantin
+    scene bg kantin with fade
+    stop sound
     pause
     show nanda makan at left 
     nanda "Ikan bandeng masakan ibu tidak pernah mengecewakan"
     hide nanda makan
     show classmates at center
+    play sound "scene 3 (berantem).ogg" fadein 1 fadeout 7
     teman "Lah, kenapa kamu makan ikan? Itu menjijikkan, mana mungkin kamu makan makhluk hidup dari laut."
     hide classmates
     hide nanda makan
+
     menu:
         "Kenapa memangnya? ":
             show nanda berani at left
@@ -131,8 +148,12 @@ label kantin:
         nanda "..."
         jump sepulang_sekolah
 
+
 label sepulang_sekolah:
-    scene bg rumah
+    scene bg rumah with fade
+    stop music
+    stop sound
+    play music "scene 4 (rumah nanda).ogg" fadein 1 fadeout 1
     pause
     if nantang:
         show ibu khawatir at right
@@ -146,12 +167,14 @@ label sepulang_sekolah:
                 hide ibu khawatir
                 hide nanda luka
                 show tv at right 
+                play sound "scene 4 (baca berita).ogg" fadein 1 fadeout 1
                 "TV dalam keadaan menyala, sedang menayangkan acara berita"
                 "reporter" '"Sebuah organisasi yang bermotif dari kebencian akan makanan laut, Perkumpulan Warga Anti Seafood, PWAS, makin meresahkan warga setempat"'
                 "reporter" '"kabarnya, pergerakan radikal organisasi ini mulai meluas pada tiap kalangan"'
                 hide tv
                 # show ibu khawatir at right 
                 show nanda luka at left
+                stop sound
                 nanda "{i}Jadi ini alasan aku dirundung{/i}"
                 $ tahu_alasan = True
                 jump kamar_nanda
@@ -190,7 +213,9 @@ label sepulang_sekolah:
             nanda "{i}Andaikan saja aku bisa tahu kenapa mereka memperlakukanku seperti itu..{/i}"
 
 label eskalasi:
-    scene bg cls
+    scene bg cls with fade
+    stop music
+    play music "scene 5 dan 6.ogg" fadein 0.1 fadeout 1
     pause
     show nanda biasa at left 
     pause
@@ -208,7 +233,7 @@ label eskalasi:
         "..."
 
 label ruangan_guru :
-    scene bg ruang_guru
+    scene bg ruang_guru with fade
     pause
     show nanda sedih at left
     nanda "Selamat pagi bu, maaf mengganggu"
@@ -241,7 +266,7 @@ label ruangan_guru :
     guru "Ibu tahu, tapi kamu tidak sendiri. Ibu dan teman-teman yang baik akan selalu mendukungmu."
 
     if tahu_alasan:
-        hide guru biasa
+        hide guru biasa 
         show nanda sedih at left
         nanda "Terima kasih, Bu. Aku akan mencoba."
         nanda "pasti tidak semua orang membenci keluarga nelayan sepertiku"
@@ -265,7 +290,9 @@ label ruangan_guru :
     jump di_teras_sekolah
 
 label di_teras_sekolah:
-    scene bg teras
+    stop music
+    play music "scene 7.ogg" fadein 1 fadeout 1
+    scene bg teras with fade
     # pause
     # show nanda biasa at left 
     pause
@@ -356,7 +383,7 @@ label azka_ngobrol :
 label rumah2:
     hide azka biasa
     hide nanda biasa
-    scene bg rumah
+    scene bg rumah with fade
     pause
     if azka_ikut :
         show nanda biasa at left
@@ -368,6 +395,8 @@ label rumah2:
         hide azka biasa
         show nanda kaget at left
         show azka kaget at right 
+        stop music
+        play music "scene 8 (ada pwas).ogg" fadein 1 fadeout 1
         "DOR DOR DOR \n (suara pintu diketuk)"
         "(Sebelum Azka dapat bercerita, tiba2 pintu depan rumah Nanda didobrak paksa)"
         "..." "Keluar kau nelayan bau amis"
@@ -383,7 +412,9 @@ label rumah2:
         nanda "..."
         pause 
         hide nanda biasa
-        show nanda kaget at left 
+        show nanda kaget at left
+        stop music
+        play music "scene 8 (ada pwas).ogg" fadein 1 fadeout 1 
         "DOR DOR DOR *\ (suara pintu diketuk)"
         "..." "Keluar kau nelayan bau amis"
         nanda "hah, apa yang terjadi?"
@@ -464,41 +495,57 @@ label rumah_azka:
     # Dialog awal kedatangan di rumah Azka
     show ayah_azka biasa at right
     ayah_azka "Oh, halo, Nak! Apa kabar? Ada sesuatu yang ayah ingin bicarakan—eh, siapa ini? Kamu membawa teman? Halo, Nak, sini, masuk saja."
+    hide ayah_azka biasa
     show azka biasa at left
     azka "Em, ayah, kenalkan ini Nanda, teman baruku."
     show nanda diam at center
     nanda "(Diam, merasa tidak nyaman dengan situasi ini.)"
     hide nanda diam
+    hide azka biasa
     show azka ragu at left
     azka "Yah... Nanda itu, dia anak seorang nelayan."
+    hide aska ragu
     # Reaksi Ayah Azka
     show ayah_azka tajam at right
     ayah_azka "(Tatapannya tajam) Nelayan? Maksudmu keluarganya cari nafkah dari laut? Dari seafood?"
+    hide ayah_azka tajam
     show azka khawatir at left
     azka "Iya, Yah."
+    hide azka khawatir
+    show ayah_azka tajam at right
     ayah_azka "Kamu nggak tahu, Nak. Dulu waktu Ayah kecil, Ayah tinggal di pinggir pantai. Setiap hari rumah kita bau amis karena pasar ikan ada di dekat situ. Orang-orang di sana nggak pernah peduli sama kebersihan."
     ayah_azka "Setiap kali Ayah jalan ke sekolah, Ayah selalu dihina sama anak-anak nelayan karena keluarga kita nggak kerja di laut. Ayah dibully cuma karena nggak makan ikan. Itu kenangan yang nggak bisa Ayah lupain."
+    hide ayah_azka tajam
+
 
     show azka serius at left
     azka "Yah, aku ngerti kalau pengalaman Ayah dulu nggak enak. Tapi Nanda dan keluarganya nggak ada hubungannya sama itu. Mereka nggak salah cuma karena mereka kerja di laut. Mereka juga manusia, Yah."
+    hide azka serius
     show ayah_azka tajam at right
     ayah_azka "Tapi mereka tetap bagian dari kelompok itu, Azka."
+    hide ayah_azka tajam
 
     show nanda berani at center
     nanda "Om, keluarga saya memang nelayan, itu benar. Tapi kami nggak cuma kerja untuk cari uang, kami juga jaga laut yang kami andalkan untuk hidup."
     nanda "Ayah saya ikut gerakan pembersihan pantai, kami nggak pernah ambil ikan secara berlebihan, dan kami ngajarin anak-anak di desa untuk nggak buang sampah ke laut."
+    hide nanda berani
     show ayah_azka tajam at right
     ayah_azka "Kamu tahu, Nanda? Dulu hidup saya pernah sulit karena orang-orang nelayan di kampung saya. Tapi mungkin... saya sudah terlalu lama menyimpan kebencian itu."
+    hide ayah_azka tajam
 
     show nanda tenang at center
     nanda "Saya nggak tahu apa yang Om alami dulu, tapi satu hal yang saya tahu, kebencian itu nggak akan membuat Om lebih bahagia. Kita cuma ingin hidup, Om, sama seperti semua orang."
+    hide nanda tenang
     show azka memohon at left
     azka "Ayah, aku mohon. Kita bisa belajar lihat orang dari hatinya, bukan dari pekerjaannya."
+    hide azka memohon
     show ayah_azka menghela_napas at right
     ayah_azka "(Menghela napas panjang) Kamu benar, Azka... Nanda. Mungkin saya salah selama ini."
+    hide ayah_azka menghela_napas
 
     show nanda tersenyum at center
     nanda "(Tersenyum, lega) Terima kasih, Om. Saya harap ke depannya, Om bisa melihat kami sebagai teman, bukan musuh."
+    hide nanda tersenyum
     hide ayah_azka menghela_napas
     hide azka memohon
     hide nanda tersenyum
@@ -507,6 +554,7 @@ label rumah_azka:
     hide ayah_azka tersenyum
     show azka biasa at left
     azka "Ayah, mau ke mana?"   
+    hide azka biasa
     show ayah_azka biasa at right
     ayah_azka "Ada sesuatu yang perlu saya lakukan. Kamu akan mengerti nanti."
     hide ayah_azka biasa
@@ -514,6 +562,7 @@ label rumah_azka:
 
     scene bg aula_desa with fade
     "Ayah Azka kemudian mengurus pembubaran kelompok PWAS, yang selama ini mengganggu ketenangan para nelayan di desa."
+
 
     scene bg sekolah_hari with fade
     "Di sekolah, Nanda berhasil mengubah persepsi teman-temannya tentang keluarga nelayan. Perlahan, kelas menjadi lebih toleran terhadap mereka yang sebelumnya dianggap berbeda."
