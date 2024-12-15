@@ -3,6 +3,7 @@
 # Deklarasikan gambar di bawah line ini, menggunakan pernyataan image.
 # cnth. image eileen happy = "eileen_happy.png"
 image bg blck = "images/pantai.jpg"
+image bg credits = "images/credits.jpg"
 image bg cls = "images/cls1.jpg"
 image bg kantin = "images/kantin.jpg"
 image bg teras = "images/teras.jpg"
@@ -11,7 +12,7 @@ image nanda biasa = "images/nandabiasa.png"
 image nanda sedih = "images/MC_Unsure.png"
 image nanda luka = "images/nandaluka.png"
 image nanda kaget = "images/nandabiasa.png"
-image azka kaget = "images/azka.png"
+image azka kaget = "images/Azka_Agitated.png"
 image nanda makan = "images/nandamakan.png"
 image ibu khawatir = "images/ibubiasa.png"
 image ibu biasa = "images/ibubiasa.png"
@@ -19,35 +20,36 @@ image ibu gembira = "images/ibubiasa.png"
 image ayah biasa = "images/ayahnanda.png"
 image classmates = "images/nandamirror.png"
 image bg rumah = "images/rumah1.jpg"
-image azka biasa = "images/azka.png"
-image azka sedih = "images/azka.png"
+image azka biasa = "images/Azka_Neutral.png"
+image azka sedih = "images/Azka_Neutral.png"
 image guru biasa = "images/guru.png"
 image bg rumah_azka = "images/rumahazka.jpg"
 image ayah_azka biasa = "images/ayahazka.png"
 image ayah_azka tajam = "images/ayahazka.png"
 image nanda diam = "images/nandabiasa.png"
-image azka ragu = "images/azka.png"
+image azka ragu = "images/Azka_Neutral.png"
 image nanda berani = "images/nandabiasa.png"
 image meja = "images/broketable.png"
 image tv = "images/tv.png"
-image azka khawatir = "images/azka.png"
-image azka ragu = "images/azka.png"
-image azka serius = "images/azka.png"
-image azka tajam = "images/azka.png"
+image azka khawatir = "images/Azka_Neutral.png"
+image azka ragu = "images/Azka_Neutral.png"
+image azka serius = "images/Azka_Neutral.png"
+image azka tajam = "images/Azka_Neutral.png"
 image ayah_azka menghela_napas = "images/ayahazka.png"
 image ayah_azka tersenyum = "images/ayahazka.png"
-image azka memohon = "images/azka.png"
+image azka memohon = "images/Azka_Neutral.png"
 image nanda tenang = "images/nandabiasa.png"
 image nanda tersenyum = "images/nandagembira.png"
 image bg aula_desa = "images/aula_desa.jpg"
 image bg sekolah_hari = "images/sekolah_hari.jpg"
 image bg sekolah= "images/sekolah.jpg"
 image bg laut_senja = "images/laut_senja.jpg"
+image bg rumah_hancur = "images/rumah hancur.jpg"
 
 
 # Deklarasikan karakter yang digunakan di game.
-define nanda = Character("Nanda", color="#eea8ea")
-define azka = Character("Azka",color = "#62a0d2")
+define nanda = Character("Nanda", color="#000000")
+define azka = Character("Azka",color = "#000000")
 define teman = Character("Classmates", color = "#747171")
 define ibu = Character("Ibu", color = "#0a0807")
 define guru = Character("Guru", color = "#0a0807")
@@ -61,6 +63,7 @@ label start:
     play music "scene 1 pantai.ogg" fadein 1 fadeout 3
     play sound "scene 1 insturment.ogg" fadein 1 fadeout 1     
 
+
     "Di suatu desa kecil di tepi pantai,..\ "
     "hidup seorang anak yang setiap harinya membantu kedua orang tuanya.."
     "ayah seorang nelayan, dan ibu seorang pedagang ikan."
@@ -70,10 +73,9 @@ label start:
 
 label classroom1 :
     stop music
+    stop sound
     scene bg sekolah with fade
-    play music "scene 2 & 5 (kelas kantin).ogg" fadein 0.5 fadeout 1 volume 0.01
-    
-    pause
+    play music "scene 2 & 5 (kelas kantin).ogg" fadein 0.5 fadeout 1 volume 0.1
     classmates "Bukankah dia anak nelayan itu? Orang-orang seperti mereka bau amis"
     pause
     show nanda biasa at left
@@ -100,7 +102,6 @@ label classroom1 :
         jump menyapa_done
 
     label menyapa_done:
-        stop sound 
         play sound "scene 2 abis dikatain bau ikan.ogg" fadein 1 fadeout 6
         show nanda biasa at left
         nanda "Hah,..."
@@ -396,7 +397,9 @@ label rumah2:
         show nanda kaget at left
         show azka kaget at right 
         stop music
+        stop sound
         play music "scene 8 (ada pwas).ogg" fadein 1 fadeout 1
+        play sound "door.ogg" fadein 1 fadeout 1 
         "DOR DOR DOR \n (suara pintu diketuk)"
         "(Sebelum Azka dapat bercerita, tiba2 pintu depan rumah Nanda didobrak paksa)"
         "..." "Keluar kau nelayan bau amis"
@@ -409,12 +412,13 @@ label rumah2:
     else :
         show nanda biasa at left
         nanda "Hari ini sungguh menyebalkan"
-        nanda "..."
         pause 
+        stop music
         hide nanda biasa
         show nanda kaget at left
         stop music
-        play music "scene 8 (ada pwas).ogg" fadein 1 fadeout 1 
+        play music "scene 8 (ada pwas).ogg" fadein 1 fadeout 1
+        play sound "door.ogg" fadein 1 fadeout 1 
         "DOR DOR DOR *\ (suara pintu diketuk)"
         "..." "Keluar kau nelayan bau amis"
         nanda "hah, apa yang terjadi?"
@@ -424,6 +428,7 @@ label rumah2:
 
 label rumah_setelah_penyerangan:
     scene bg rumah with fade
+    stop sound
     if azka_ikut:
         show nanda sedih at left
         show azka biasa at right
@@ -439,7 +444,11 @@ label rumah_setelah_penyerangan:
         azka "{i}(Bagaimana cara saya menyampaikan hal ini pada mereka...){/i}"
         nanda "Azka? Apa yang ingin kamu bicarakan?"
         azka "Sebenarnya... Ketua PWAS adalah ayah kandung saya. Namun, saya tidak setuju dengan apa yang ayah saya lakukan. Itulah alasan kenapa saya ingin berteman denganmu, untuk menyelamatkan keluargamu dari ancamannya."
+        hide azka sedih
+        show nanda biasa at right
         nanda "Azka, aku tidak tahu harus berkata apa..."
+        hide nanda biasa
+        show azka sedih at right
         azka "Aku minta maaf tidak memberitahumu lebih awal" 
         azka "dan aku juga meminta maaf ayahku tega membuat keluargamu sengsara. Aku janji aku akan mencari cara untuk memperbaiki ini."
         show ibu biasa at center
@@ -449,7 +458,8 @@ label rumah_setelah_penyerangan:
         ayah "Iya nak, aku tahu itu ayahmu, namun kau harus tetap berhati-hati."
         azka "Baik tante, om."
         hide ayah biasa
-        show azka biasa at right
+        hide azka sedih
+
         "Azka dan Nanda pergi ke rumah Azka untuk menemui ayah Azka."
         jump rumah_azka
     else:
@@ -466,28 +476,30 @@ label rumah_setelah_penyerangan:
         jump rencana_pindah
 
 label rencana_pindah:
-    scene bg teras with fade
+    scene bg rumah_hancur with fade
     pause
     menu:
         "Sebenarnya, aku masih ingin tinggal di sini.":
             show nanda biasa at left
-            show ibu khawatir at right
+            
             nanda "Sebenarnya, aku masih ingin tinggal di sini, Yah. Aku akan mencoba untuk menjauh dari orang-orang yang menindasku di kelas."
+            hide nanda biasa
+            show ibu khawatir at right
             ibu "Kalau itu keputusanmu, Nak, kami akan mendukungmu. Tapi ingat, tetaplah berhati-hati, ya?"
             hide ibu khawatir
-            hide nanda biasa
             "Nanda dan keluarganya memutuskan untuk tetap tinggal di desa itu. Nanda memilih untuk tetap menjaga jarak, dengan fokus pada keluarganya dan persahabatan yang ia bangun di luar lingkungan kelas."
-            return
+            jump credit
 
         "Tidak yah, kebahagiaanku bukan apa-apa kalau dibandingkan dengan keselamatan kalian.":
             show nanda biasa at left
-            show ayah biasa at right
+            
             nanda "Tidak yah, kebahagiaanku bukan apa-apa kalau dibandingkan dengan keselamatan kalian. Aku tidak ingin hal buruk itu terjadi lagi. Aku ingin pindah dari sini."
+            show ayah biasa at right
             ayah "Baiklah, Nak. Kalau itu yang terbaik untuk kita semua, Ayah dan Ibu akan bersiap-siap."
             hide ayah biasa
             hide nanda biasa
             "Nanda dan keluarganya terpaksa pindah ke daerah lain karena Nanda gagal menghentikan teror yang menimpanya dan keluarganya."
-            return
+            jump credit
 
 label rumah_azka:
     scene bg rumah_azka with fade
@@ -569,8 +581,12 @@ label rumah_azka:
 
     scene bg laut_senja with fade
     "Keluarga Nanda akhirnya terbebas dari ancaman dan teror. Mereka dapat hidup dengan tenang, menjaga laut dengan penuh cinta seperti yang selalu mereka lakukan."
+    jump credit
+
+label credit:
+    scene bg credits with fade 
+    pause
     return
 
-        
 
     
