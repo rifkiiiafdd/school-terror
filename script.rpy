@@ -45,17 +45,20 @@ image bg sekolah_hari = "images/sekolah_hari.jpg"
 image bg sekolah= "images/sekolah.jpg"
 image bg laut_senja = "images/laut_senja.jpg"
 image bg rumah_hancur = "images/rumah hancur.jpg"
+image bg ending1 = "images/ending 1.jpg"
+image bg ending2 = "images/ending 2.jpg"
+image bg ending3 = "images/ending 3.jpg"
 
 
 # Deklarasikan karakter yang digunakan di game.
 define nanda = Character("Nanda", color="#000000")
 define azka = Character("Azka",color = "#000000")
-define teman = Character("Classmates", color = "#747171")
+define teman = Character("Classmates", color = "#333333")
 define ibu = Character("Ibu", color = "#0a0807")
 define guru = Character("Guru", color = "#0a0807")
 define ayah = Character("Ayah", color = "#0a0807")
 define ayah_azka = Character("Ayah azka", color = "#0a0807")
-define classmates = Character("Classmates", color = "#747171")
+define classmates = Character("Classmates", color = "#3a3838")
 
 # Game dimulai disini.
 label start:
@@ -431,21 +434,30 @@ label rumah_setelah_penyerangan:
     stop sound
     if azka_ikut:
         show nanda sedih at left
-        show azka biasa at right
+        
         nanda "Ibu! Ayah! Apakah kalian tidak apa-apa? Mereka melakukan apa??"
         hide nanda sedih
         show ibu khawatir at center
         ibu "Kami tidak apa-apa nak, untung saja mereka tidak mencarimu juga."
         show ayah biasa at left
         ayah "Iya nak, untung saja mereka tidak melakukan apa-apa ke kamu. Temanmu tidak apa-apa juga kan?"
+        hide ayah biasa
+        hide ibu khawatir
+
         show azka biasa at right
         azka "Iya, Om, saya tidak apa-apa... Tapi... ada sesuatu yang ingin saya bicarakan."
+        hide azka biasa
         show azka sedih at right
         azka "{i}(Bagaimana cara saya menyampaikan hal ini pada mereka...){/i}"
+        hide azka sedih
+        show nanda biasa at left
         nanda "Azka? Apa yang ingin kamu bicarakan?"
+        hide nanda biasa
+        show azka sedih at right
         azka "Sebenarnya... Ketua PWAS adalah ayah kandung saya. Namun, saya tidak setuju dengan apa yang ayah saya lakukan. Itulah alasan kenapa saya ingin berteman denganmu, untuk menyelamatkan keluargamu dari ancamannya."
         hide azka sedih
-        show nanda biasa at right
+
+        show nanda biasa at left
         nanda "Azka, aku tidak tahu harus berkata apa..."
         hide nanda biasa
         show azka sedih at right
@@ -488,7 +500,7 @@ label rencana_pindah:
             ibu "Kalau itu keputusanmu, Nak, kami akan mendukungmu. Tapi ingat, tetaplah berhati-hati, ya?"
             hide ibu khawatir
             "Nanda dan keluarganya memutuskan untuk tetap tinggal di desa itu. Nanda memilih untuk tetap menjaga jarak, dengan fokus pada keluarganya dan persahabatan yang ia bangun di luar lingkungan kelas."
-            jump credit
+            jump ed2
 
         "Tidak yah, kebahagiaanku bukan apa-apa kalau dibandingkan dengan keselamatan kalian.":
             show nanda biasa at left
@@ -499,7 +511,7 @@ label rencana_pindah:
             hide ayah biasa
             hide nanda biasa
             "Nanda dan keluarganya terpaksa pindah ke daerah lain karena Nanda gagal menghentikan teror yang menimpanya dan keluarganya."
-            jump credit
+            jump ed3
 
 label rumah_azka:
     scene bg rumah_azka with fade
@@ -581,7 +593,39 @@ label rumah_azka:
 
     scene bg laut_senja with fade
     "Keluarga Nanda akhirnya terbebas dari ancaman dan teror. Mereka dapat hidup dengan tenang, menjaga laut dengan penuh cinta seperti yang selalu mereka lakukan."
-    jump credit
+    jump ed1
+
+label ed1:
+    scene bg ending1 with fade
+    
+    menu :
+        "Ya" :
+            jump start
+
+        
+        "Tidak" :
+            jump credit
+
+label ed3:
+    scene bg ending3 with fade
+    
+    menu :
+        "Ya" :
+            jump start
+
+        
+        "Tidak" :
+            jump credit
+label ed2:
+    scene bg ending2 with fade
+    
+    menu :
+        "Ya" :
+            jump start
+
+        
+        "Tidak" :
+            jump credit
 
 label credit:
     scene bg credits with fade 

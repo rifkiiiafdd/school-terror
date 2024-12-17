@@ -220,17 +220,18 @@ style choice_button_text is button_text
 
 style choice_vbox:
     xalign 0.5
-    ypos 405
+    ypos 600
     yanchor 0.5
 
     spacing gui.choice_spacing
 
 style choice_button is default:
     properties gui.button_properties("choice_button")
+    # background Frame("gui/choice_button_background.png", 10, 10, 10, 10)
+    # foreground Frame("gui/choice_button_foreground.png", 10, 10, 10, 10)
 
 style choice_button_text is default:
     properties gui.text_properties("choice_button")
-
 
 ## Layar Menu Cepat/Quick Menu #################################################
 ##
@@ -250,14 +251,18 @@ screen quick_menu():
             xalign 0.5
             yalign 1.0
 
-            textbutton _("Kembali") action Rollback()
-            textbutton _("Riwayat") action ShowMenu('history')
-            textbutton _("Lompati") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("Otomatis") action Preference("auto-forward", "toggle")
-            textbutton _("Simpan") action ShowMenu('save')
-            textbutton _("Simpan.C") action QuickSave()
-            textbutton _("Muat.C") action QuickLoad()
-            textbutton _("Setting") action ShowMenu('preferences')
+            textbutton _("Kembali") action Rollback() 
+            textbutton _("Riwayat") action ShowMenu('history') 
+            textbutton _("Lompati") action Skip() alternate Skip(fast=True, confirm=True) 
+            textbutton _("Otomatis") action Preference("auto-forward", "toggle") 
+            textbutton _("Simpan") action ShowMenu('save') 
+            textbutton _("Simpan") action QuickSave() 
+            textbutton _("Muat") action QuickLoad() 
+            textbutton _("Pengaturan") action ShowMenu('preferences') 
+
+# style quick_button_text:
+#     color "#000"
+#     size 8
 
 
 ## Kode ini memastikan layar quick_menu di tampilkan di dalam permainan,
@@ -1015,7 +1020,7 @@ screen keyboard_help():
         text _("Dialog tingkat lanjut dan mengaktifkan antarmuka.")
 
     hbox:
-        label _("Spasi")
+        label _("Space")
         text _("Dialog tingkat lanjut tanpa memilih pilihan.")
 
     hbox:
@@ -1023,7 +1028,7 @@ screen keyboard_help():
         text _("Navigasi di antarmuka")
 
     hbox:
-        label _("Melarikan diri")
+        label _("Esc")
         text _("Akses menu permainan.")
 
     hbox:
@@ -1035,7 +1040,7 @@ screen keyboard_help():
         text _("Nyala/Matikan lompati dialog.")
 
     hbox:
-        label _("Halaman Atas")
+        label _("Page Up")
         text _("Putar mundur ke dialog sebelumnya.")
 
     hbox:
@@ -1074,11 +1079,11 @@ screen mouse_help():
         text _("Akses menu permainan.")
 
     hbox:
-        label _("Roda Mouse Atas")
+        label _("Roll Mouse Atas")  
         text _("Putar mundur ke dialog sebelumnya.")
 
     hbox:
-        label _("Roda Mouse Bawah")
+        label _("Roll Mouse Bawah")
         text _("Putar maju ke dialog berikut.")
 
 

@@ -202,7 +202,10 @@ define gui.quick_button_text_selected_color = gui.accent_color
 
 ## Tombol Pilihan ##############################################################
 ##
-## Choice buttons are used in the in-game menus.
+## Tombol Pilihan ##############################################################
+##
+## Tombol pilihan digunakan dalam menu dalam permainan.
+# define gui.choice_button_text_yalign = 100000
 
 define gui.choice_button_width = 1185
 define gui.choice_button_height = None
