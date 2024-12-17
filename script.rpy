@@ -10,6 +10,7 @@ image bg teras = "images/teras.jpg"
 image bg ruang_guru = "images/ruang_guru.jpg"
 image bg meja = "images/meja.jpg"
 image bg makan = "images/makan.jpg"
+image bg tv = 'images/tv.jpg'
 image nanda biasa = "images/nandabiasa.png"
 image nanda sedih = "images/MC_Unsure.png"
 image nanda luka = "images/nandaluka.png"
@@ -191,13 +192,13 @@ label sepulang_sekolah:
                 nanda "..."
                 hide ibu khawatir
                 hide nanda luka
-                show tv at right 
+                scene bg tv with fade
                 play sound "scene 4 (baca berita).ogg" fadein 1 fadeout 1
                 "TV dalam keadaan menyala, sedang menayangkan acara berita"
                 "reporter" '"Sebuah organisasi yang bermotif dari kebencian akan makanan laut, Perkumpulan Warga Anti Seafood, PWAS, makin meresahkan warga setempat"'
                 "reporter" '"kabarnya, pergerakan radikal organisasi ini mulai meluas pada tiap kalangan"'
-                hide tv
-                # show ibu khawatir at right 
+                scene bg rumah with dissolve
+                # show i bu khawatir at right 
                 show nanda luka at left
                 stop sound
                 nanda "{i}Jadi ini alasan aku dirundung{/i}"
@@ -250,19 +251,18 @@ label eskalasi:
     
     show nanda biasa at left 
     with moveinleft
-    nanda "apa yang terjadi dengan meja ku?"
-    pause
+    nanda "apa yang terjadi dengan meja ku?"    
     scene bg meja with fade
     play music "meja.ogg"
     pause
     scene bg cls with fade
-    show nanda biasa at left 
+    show nanda sedih at left 
     with dissolve
 
     pause
     if tahu_alasan:
         nanda "(Menenangkan diri, Melihat sekitar)"
-        hide nanda biasa
+        hide nanda sedih
         with moveoutleft
         nanda "(Keluar dari kelas)"
 
@@ -270,7 +270,7 @@ label eskalasi:
         nanda "Kenapa mereka membenci kami hanya karena kami dari keluarga nelayan?"
         
         "..."
-        hide nanda biasa
+        hide nanda sedih
         with moveoutleft
         nanda "(Keluar dari kelas)"
 
@@ -431,9 +431,11 @@ label rumah2:
     pause
     if azka_ikut :
         show nanda biasa at left
+        with moveinleft
         nanda "Jadi, kamu mau ngobrolin apa?"
         hide nanda biasa
         show azka biasa at right
+        with moveinright
         azka "Aku mungkin tau sedikit hal tentang PWAS...."
         azka "..."
         hide azka biasa
@@ -444,12 +446,15 @@ label rumah2:
         play music "scene 8 (ada pwas).ogg" fadein 1 fadeout 1
         play sound "door.ogg" fadein 1 fadeout 1 
         "DOR DOR DOR \n (suara pintu diketuk)"
-        "(Sebelum Azka dapat bercerita, tiba2 pintu depan rumah Nanda didobrak paksa)"
+        "(Sebelum Azka dapat bercerita, tiba-tiba pintu depan rumah Nanda didobrak paksa)"
         "..." "Keluar kau nelayan bau amis"
-        hide nanda kaget
+        
         azka "Sial, mereka datang kesini"
         azka "ayo lari"
+        hide nanda kaget
+        with moveoutleft
         hide azka kaget
+        with moveoutright
         "(Nanda dan Azka berhasil menyelinap kabur melalui jendela)"
         "Mereka tak berhenti berlari ketakutan sampai tiba di suatu gubuk"
     else :
