@@ -8,16 +8,19 @@ image bg cls = "images/cls1.jpg"
 image bg kantin = "images/kantin.jpg"
 image bg teras = "images/teras.jpg"
 image bg ruang_guru = "images/ruang_guru.jpg"
+image bg meja = "images/meja.jpg"
+image bg makan = "images/makan.jpg"
 image nanda biasa = "images/nandabiasa.png"
 image nanda sedih = "images/MC_Unsure.png"
 image nanda luka = "images/nandaluka.png"
 image nanda kaget = "images/nandabiasa.png"
 image azka kaget = "images/Azka_Agitated.png"
 image nanda makan = "images/nandamakan.png"
-image ibu khawatir = "images/ibubiasa.png"
-image ibu biasa = "images/ibubiasa.png"
-image ibu gembira = "images/ibubiasa.png"
-image ayah biasa = "images/ayahnanda.png"
+image ibu khawatir = "images/Ibu_Wary.png"
+image ibu biasa = "images/Ibu_Smilling.png"
+image ibu gembira = "images/Ibu_Smilling.png"
+image ayah biasa = "images/Ayah_Smilling.png"
+image ayah khawatir = "images/Ayah_Wary.png"
 image classmates = "images/nandamirror.png"
 image bg rumah = "images/rumah1.jpg"
 image azka biasa = "images/Azka_Neutral.png"
@@ -51,14 +54,14 @@ image bg ending3 = "images/ending 3.jpg"
 
 
 # Deklarasikan karakter yang digunakan di game.
-define nanda = Character("Nanda", color="#000000")
-define azka = Character("Azka",color = "#000000")
-define teman = Character("Classmates", color = "#333333")
-define ibu = Character("Ibu", color = "#0a0807")
-define guru = Character("Guru", color = "#0a0807")
-define ayah = Character("Ayah", color = "#0a0807")
-define ayah_azka = Character("Ayah azka", color = "#0a0807")
-define classmates = Character("Classmates", color = "#3a3838")
+define nanda = Character("Nanda", color="#ffddf2")
+define azka = Character("Azka",color = "#ffffff")
+define teman = Character("Classmates", color = "#ffffff")
+define ibu = Character("Ibu", color = "#ffffff")
+define guru = Character("Guru", color = "#ffe2d4")
+define ayah = Character("Ayah", color = "#ffffdf")
+define ayah_azka = Character("Ayah azka", color = "#d1ffdc")
+define classmates = Character("Classmates", color = "#d6d5d5")
 
 # Game dimulai disini.
 label start:
@@ -79,9 +82,11 @@ label classroom1 :
     stop sound
     scene bg sekolah with fade
     play music "scene 2 & 5 (kelas kantin).ogg" fadein 0.5 fadeout 1 volume 0.1
-    classmates "Bukankah dia anak nelayan itu? Orang-orang seperti mereka bau amis"
-    pause
     show nanda biasa at left
+    with moveinleft
+    pause
+    classmates "Bukankah dia anak nelayan itu? Orang-orang seperti mereka bau amis"
+    
     
     menu:
         "Hai,.. Selamat pagi":
@@ -91,13 +96,15 @@ label classroom1 :
             jump tidak_menyapa 
 
     label menyapa:
-        show nanda biasa at left
-        nanda "Hai,.. Selamat pagi"
         hide nanda biasa
+        show nanda tersenyum at left
+        with dissolve
+        nanda "Hai,.. Selamat pagi"
         classmates "Eh, kamu yang anak nelayan ya?? Kamu bau amis habisnya!"
         jump menyapa_done
 
     label tidak_menyapa:
+        hide nanda biasa
         show nanda biasa at left
         nanda "..."
         hide nanda biasa
@@ -107,6 +114,7 @@ label classroom1 :
     label menyapa_done:
         play sound "scene 2 abis dikatain bau ikan.ogg" fadein 1 fadeout 6
         show nanda biasa at left
+        with dissolve
         nanda "Hah,..."
         nanda "Apa yang salah dengan aku?"
         
@@ -115,11 +123,20 @@ label classroom1 :
 label kantin:
     scene bg kantin with fade
     stop sound
+    show nanda makan at left 
+    with moveinbottom
     pause
+    scene makan with dissolve
+    pause
+    scene bg kantin 
+    with dissolve
     show nanda makan at left 
     nanda "Ikan bandeng masakan ibu tidak pernah mengecewakan"
+    with dissolve
+
     hide nanda makan
     show classmates at center
+    with moveinright
     play sound "scene 3 (berantem).ogg" fadein 1 fadeout 7
     teman "Lah, kenapa kamu makan ikan? Itu menjijikkan, mana mungkin kamu makan makhluk hidup dari laut."
     hide classmates
@@ -161,12 +178,14 @@ label sepulang_sekolah:
     pause
     if nantang:
         show ibu khawatir at right
+        with moveinright
         ibu "Nanda, kamu pulang sih, tapi kenapa kamu kelihatan sedih?"
         hide ibu khawatir
         
         menu:
             "...":
                 show nanda luka at left
+
                 nanda "..."
                 hide ibu khawatir
                 hide nanda luka
@@ -181,6 +200,8 @@ label sepulang_sekolah:
                 stop sound
                 nanda "{i}Jadi ini alasan aku dirundung{/i}"
                 $ tahu_alasan = True
+                hide nanda luka
+                with moveoutleft
                 jump kamar_nanda
 
             
@@ -190,6 +211,7 @@ label sepulang_sekolah:
                 nanda "Tidak apa-apa bu"
                 hide ibu khawatir
                 hide nanda luka
+                with moveoutleft
                 
                 jump kamar_nanda
 
@@ -198,45 +220,59 @@ label sepulang_sekolah:
         show ibu gembira at right
         ibu "Bagaimana hari pertama sekolahmu, nak"
         hide ibu gembira
-        show nanda sedih at left
+        show nanda sedih at left 
         nanda "Tidak apa-apa, bu"
         hide nanda sedih
         jump kamar_nanda
     
     label kamar_nanda:
-        scene bg rumah
         "Nanda masuk ke kamar"
         if nantang :
             show nanda luka at left
+            with moveinleft
             nanda "(Menangis)"
             nanda "{i}Sepertinya aku harus lebih ramah kepada orang lain{i}"
             hide nanda luka
+            with moveoutleft
     
         else :
             show nanda sedih at left
             nanda "{i}Andaikan saja aku bisa tahu kenapa mereka memperlakukanku seperti itu..{/i}"
+            hide nanda sedih 
+            with moveoutleft
 
 label eskalasi:
     scene bg cls with fade
     stop music
-    play music "scene 5 dan 6.ogg" fadein 0.1 fadeout 1
-    pause
+    
     show nanda biasa at left 
+    with moveinleft
     pause
-    show meja at center
+    scene bg meja with fade
+    play music "meja.ogg"
+    pause
+    scene bg cls with fade
+    show nanda biasa at left 
+    with dissolve
+
     pause
     if tahu_alasan:
         nanda "(Menenangkan diri, Melihat sekitar)"
         hide nanda biasa
-        hide meja
+        with moveoutleft
         nanda "(Keluar dari kelas)"
 
     else : 
         nanda "Kenapa mereka membenci kami hanya karena kami dari keluarga nelayan?"
         
         "..."
+        hide nanda biasa
+        with moveoutleft
+        nanda "(Keluar dari kelas)"
 
 label ruangan_guru :
+    stop music
+    play music "scene 5 dan 6.ogg" fadein 0.1 fadeout  0.1
     scene bg ruang_guru with fade
     pause
     show nanda sedih at left
@@ -466,10 +502,10 @@ label rumah_setelah_penyerangan:
         show ibu biasa at center
         ibu "Azka... pesanku hanya satu, jaga keselamatanmu, ya?"
         hide ibu biasa
-        show ayah biasa at center
+        show ayah khawatir at center
         ayah "Iya nak, aku tahu itu ayahmu, namun kau harus tetap berhati-hati."
         azka "Baik tante, om."
-        hide ayah biasa
+        hide ayah khawatir
         hide azka sedih
 
         "Azka dan Nanda pergi ke rumah Azka untuk menemui ayah Azka."

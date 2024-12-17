@@ -29,7 +29,7 @@ define config.check_conflicting_properties = True
 define gui.accent_color = '#000000'
 
 ## Warna yang di gunakan untuk warna tombol text jika di pilih atau di tekan.
-define gui.idle_color = '#707070'
+define gui.idle_color =  '#707070'
 
 ## Warna kecil yang di gunakan untuk text kecil, yang membutuhkan lebih terang/
 ## lebih gelap untuk mencapai efek yang sama
@@ -52,7 +52,7 @@ define gui.muted_color = '#666666'
 define gui.hover_muted_color = '#999999'
 
 ## Warna yang di gunakan untuk dialog dan text pilihan menu.
-define gui.text_color = '#404040'
+define gui.text_color = '#ffffff'
 define gui.interface_text_color = '#404040'
 
 
