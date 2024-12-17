@@ -22,7 +22,8 @@ image ibu gembira = "images/Ibu_Smilling.png"
 image ayah biasa = "images/Ayah_Smilling.png"
 image ayah khawatir = "images/Ayah_Wary.png"
 image classmates = "images/nandamirror.png"
-image bg rumah = "images/rumah1.jpg"
+image bg kamar = "images/rumah1.jpg"
+image bg rumah = "images/dirumah.jpg"
 image azka biasa = "images/Azka_Neutral.png"
 image azka sedih = "images/Azka_Neutral.png"
 image guru biasa = "images/guru.png"
@@ -165,6 +166,7 @@ label kantin:
     
     label ikanlezat:
         $ nantang = False
+        show classmates at center
         teman "iihhhh, pantesan kamu bau amis"
         nanda "..."
         jump sepulang_sekolah
@@ -209,7 +211,6 @@ label sepulang_sekolah:
                 $ tahu_alasan = False
                 show nanda luka at left
                 nanda "Tidak apa-apa bu"
-                hide ibu khawatir
                 hide nanda luka
                 with moveoutleft
                 
@@ -222,24 +223,26 @@ label sepulang_sekolah:
         hide ibu gembira
         show nanda sedih at left 
         nanda "Tidak apa-apa, bu"
+        
         hide nanda sedih
+        with moveoutleft
         jump kamar_nanda
     
     label kamar_nanda:
         "Nanda masuk ke kamar"
+        scene bg kamar with fade
         if nantang :
             show nanda luka at left
             with moveinleft
             nanda "(Menangis)"
             nanda "{i}Sepertinya aku harus lebih ramah kepada orang lain{i}"
             hide nanda luka
-            with moveoutleft
     
         else :
             show nanda sedih at left
+            with moveinleft
             nanda "{i}Andaikan saja aku bisa tahu kenapa mereka memperlakukanku seperti itu..{/i}"
             hide nanda sedih 
-            with moveoutleft
 
 label eskalasi:
     scene bg cls with fade
@@ -247,6 +250,7 @@ label eskalasi:
     
     show nanda biasa at left 
     with moveinleft
+    nanda "apa yang terjadi dengan meja ku?"
     pause
     scene bg meja with fade
     play music "meja.ogg"
