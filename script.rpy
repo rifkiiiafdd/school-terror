@@ -3,6 +3,7 @@
 # Deklarasikan gambar di bawah line ini, menggunakan pernyataan image.
 # cnth. image eileen happy = "eileen_happy.png"
 image bg blck = "images/pantai.jpg"
+image bg bus = "images/bus.jpg"
 image bg credits = "images/credits.jpg"
 image bg cls = "images/cls1.jpg"
 image bg kantin = "images/kantin.jpg"
@@ -27,7 +28,7 @@ image bg kamar = "images/rumah1.jpg"
 image bg rumah = "images/dirumah.jpg"
 image azka biasa = "images/Azka_Neutral.png"
 image azka sedih = "images/Azka_Neutral.png"
-image guru biasa = "images/guru.png"
+image guru biasa = "images/guru2.png"
 image bg rumah_azka = "images/rumahazka.jpg"
 image ayah_azka biasa = "images/ayahazka.png"
 image ayah_azka tajam = "images/ayahazka.png"
@@ -53,6 +54,7 @@ image bg rumah_hancur = "images/rumah hancur.jpg"
 image bg ending1 = "images/ending 1.jpg"
 image bg ending2 = "images/ending 2.jpg"
 image bg ending3 = "images/ending 3.jpg"
+image bg keroyok = "images/keroyok.jpg"
 
 
 # Deklarasikan karakter yang digunakan di game.
@@ -64,6 +66,8 @@ define guru = Character("Guru", color = "#ffe2d4")
 define ayah = Character("Ayah", color = "#ffffdf")
 define ayah_azka = Character("Ayah azka", color = "#d1ffdc")
 define classmates = Character("Classmates", color = "#d6d5d5")
+define reporter = Character("Reporter", color = "#ffffff")
+define narator = Character("Narator", color = "#ffffff")
 
 # Game dimulai disini.
 label start:
@@ -72,10 +76,10 @@ label start:
     play sound "scene 1 insturment.ogg" fadein 1 fadeout 1     
 
 
-    "Di suatu desa kecil di tepi pantai,..\ "
-    "hidup seorang anak yang setiap harinya membantu kedua orang tuanya.."
-    "ayah seorang nelayan, dan ibu seorang pedagang ikan."
-    "Bagi mereka, laut adalah kehidupan."
+    narator "Di suatu desa kecil di tepi pantai,..\ "
+    narator "hidup seorang anak yang setiap harinya membantu kedua orang tuanya.."
+    narator "ayah seorang nelayan, dan ibu seorang pedagang ikan."
+    narator "Bagi mereka, laut adalah kehidupan."
     stop music
     jump classroom1
 
@@ -137,7 +141,7 @@ label kantin:
     with dissolve
 
     hide nanda makan
-    show classmates at center
+    show classmates at right
     with moveinright
     play sound "scene 3 (berantem).ogg" fadein 1 fadeout 7
     teman "Lah, kenapa kamu makan ikan? Itu menjijikkan, mana mungkin kamu makan makhluk hidup dari laut."
@@ -158,7 +162,7 @@ label kantin:
             jump ikanlezat
     
     label nantang:
-        show classmates at center
+        show classmates at right
         teman "Lah? Nantangin?"
         hide classmates 
         $ nantang = True
@@ -167,7 +171,7 @@ label kantin:
     
     label ikanlezat:
         $ nantang = False
-        show classmates at center
+        show classmates at right
         teman "iihhhh, pantesan kamu bau amis"
         nanda "..."
         jump sepulang_sekolah
@@ -195,8 +199,8 @@ label sepulang_sekolah:
                 scene bg tv with fade
                 play sound "scene 4 (baca berita).ogg" fadein 1 fadeout 1
                 "TV dalam keadaan menyala, sedang menayangkan acara berita"
-                "reporter" '"Sebuah organisasi yang bermotif dari kebencian akan makanan laut, Perkumpulan Warga Anti Seafood, PWAS, makin meresahkan warga setempat"'
-                "reporter" '"kabarnya, pergerakan radikal organisasi ini mulai meluas pada tiap kalangan"'
+                reporter '"Sebuah organisasi yang bermotif dari kebencian akan makanan laut, Perkumpulan Warga Anti Seafood, PWAS, makin meresahkan warga setempat"'
+                reporter '"kabarnya, pergerakan radikal organisasi ini mulai meluas pada tiap kalangan"'
                 scene bg rumah with dissolve
                 # show i bu khawatir at right 
                 show nanda luka at left
@@ -280,9 +284,11 @@ label ruangan_guru :
     scene bg ruang_guru with fade
     pause
     show nanda sedih at left
+    with moveinleft
     nanda "Selamat pagi bu, maaf mengganggu"
     hide nanda sedih
     show guru biasa at right
+    with moveinright
     guru "Ada apa, Nanda? Kamu terlihat sedih."
     hide guru biasa
     show nanda biasa at left
@@ -310,12 +316,15 @@ label ruangan_guru :
     guru "Ibu tahu, tapi kamu tidak sendiri. Ibu dan teman-teman yang baik akan selalu mendukungmu."
 
     if tahu_alasan:
-        hide guru biasa 
+        
         show nanda sedih at left
         nanda "Terima kasih, Bu. Aku akan mencoba."
+        hide guru biasa 
+        with moveoutright
         nanda "pasti tidak semua orang membenci keluarga nelayan sepertiku"
         nanda "Aku harus mencari teman seperti itu"
         hide nanda sedih
+        with moveoutleft
     else :
         hide guru biasa
         show nanda sedih at left
@@ -327,10 +336,12 @@ label ruangan_guru :
         guru "Nanda, jangan berkata seperti itu. Semua pekerjaan itu mulia"
         guru "jangan khawatir, ibu akan memarahi mereka"
         hide guru biasa
+        with moveoutleft
         show nanda sedih at left
         nanda "{i}Ibu tidak mengerti{/i}"
         nanda "{i}Ku rasa tidak ada yang bisa kupercaya{/i}"
         hide nanda sedih
+        with moveoutleft
     jump di_teras_sekolah
 
 label di_teras_sekolah:
@@ -338,10 +349,10 @@ label di_teras_sekolah:
     play music "scene 7.ogg" fadein 1 fadeout 1
     scene bg teras with fade
     # pause
-    # show nanda biasa at left 
+    show nanda biasa at left 
     pause
     show azka biasa at right
-    pause
+    with moveinright
     azka "Hai, apakah kamu tidak apa-apa?"
     $ azka_berteman = True
     hide azka biasa
@@ -414,6 +425,7 @@ label azka_ngobrol :
             nanda "Boleh"
             nanda "aku juga ingin tahu lebih banyak tentang organisasi itu"
             hide nanda biasa
+            with moveoutleft
             $ azka_ikut = True
             jump rumah2
         
@@ -421,6 +433,7 @@ label azka_ngobrol :
             show nanda biasa at left
             nanda "Maaf, aku ada urusan"
             hide nanda biasa
+            with moveoutleft
             $ azka_ikut = False
             jump rumah2
 
@@ -447,8 +460,11 @@ label rumah2:
         play sound "door.ogg" fadein 1 fadeout 1 
         "DOR DOR DOR \n (suara pintu diketuk)"
         "(Sebelum Azka dapat bercerita, tiba-tiba pintu depan rumah Nanda didobrak paksa)"
+        scene bg keroyok with fade
         "..." "Keluar kau nelayan bau amis"
-        
+        scene bg rumah with fade
+        show nanda kaget at left
+        show azka kaget at right
         azka "Sial, mereka datang kesini"
         azka "ayo lari"
         hide nanda kaget
@@ -482,8 +498,9 @@ label rumah_setelah_penyerangan:
         
         nanda "Ibu! Ayah! Apakah kalian tidak apa-apa? Mereka melakukan apa??"
         hide nanda sedih
-        show ibu khawatir at center
+        show ibu khawatir at right
         ibu "Kami tidak apa-apa nak, untung saja mereka tidak mencarimu juga."
+        hide ibu khawatir
         show ayah biasa at left
         ayah "Iya nak, untung saja mereka tidak melakukan apa-apa ke kamu. Temanmu tidak apa-apa juga kan?"
         hide ayah biasa
@@ -499,7 +516,8 @@ label rumah_setelah_penyerangan:
         nanda "Azka? Apa yang ingin kamu bicarakan?"
         hide nanda biasa
         show azka sedih at right
-        azka "Sebenarnya... Ketua PWAS adalah ayah kandung saya. Namun, saya tidak setuju dengan apa yang ayah saya lakukan. Itulah alasan kenapa saya ingin berteman denganmu, untuk menyelamatkan keluargamu dari ancamannya."
+        azka "Sebenarnya... Ketua PWAS adalah ayah kandung saya. Namun, saya tidak setuju dengan apa yang ayah saya lakukan."
+        azka "Itulah alasan kenapa saya ingin berteman denganmu, untuk menyelamatkan keluargamu dari ancamannya."
         hide azka sedih
 
         show nanda biasa at left
@@ -507,11 +525,11 @@ label rumah_setelah_penyerangan:
         hide nanda biasa
         show azka sedih at right
         azka "Aku minta maaf tidak memberitahumu lebih awal" 
-        azka "dan aku juga meminta maaf ayahku tega membuat keluargamu sengsara. Aku janji aku akan mencari cara untuk memperbaiki ini."
-        show ibu biasa at center
+        azka "Aku juga meminta maaf ayahku tega membuat keluargamu sengsara. Aku janji aku akan mencari cara untuk memperbaiki ini."
+        show ibu khawatir at left
         ibu "Azka... pesanku hanya satu, jaga keselamatanmu, ya?"
-        hide ibu biasa
-        show ayah khawatir at center
+        hide ibu khawatir
+        show ayah khawatir at left
         ayah "Iya nak, aku tahu itu ayahmu, namun kau harus tetap berhati-hati."
         azka "Baik tante, om."
         hide ayah khawatir
@@ -555,6 +573,7 @@ label rencana_pindah:
             ayah "Baiklah, Nak. Kalau itu yang terbaik untuk kita semua, Ayah dan Ibu akan bersiap-siap."
             hide ayah biasa
             hide nanda biasa
+            scene bg bus with fade
             "Nanda dan keluarganya terpaksa pindah ke daerah lain karena Nanda gagal menghentikan teror yang menimpanya dan keluarganya."
             jump ed3
 
@@ -567,7 +586,8 @@ label rumah_azka:
     hide ayah_azka biasa
     show azka biasa at left
     azka "Em, ayah, kenalkan ini Nanda, teman baruku."
-    show nanda diam at center
+    hide azka biasa
+    show nanda diam at left
     nanda "(Diam, merasa tidak nyaman dengan situasi ini.)"
     hide nanda diam
     hide azka biasa
@@ -594,7 +614,7 @@ label rumah_azka:
     ayah_azka "Tapi mereka tetap bagian dari kelompok itu, Azka."
     hide ayah_azka tajam
 
-    show nanda berani at center
+    show nanda berani at left
     nanda "Om, keluarga saya memang nelayan, itu benar. Tapi kami nggak cuma kerja untuk cari uang, kami juga jaga laut yang kami andalkan untuk hidup."
     nanda "Ayah saya ikut gerakan pembersihan pantai, kami nggak pernah ambil ikan secara berlebihan, dan kami ngajarin anak-anak di desa untuk nggak buang sampah ke laut."
     hide nanda berani
@@ -602,7 +622,7 @@ label rumah_azka:
     ayah_azka "Kamu tahu, Nanda? Dulu hidup saya pernah sulit karena orang-orang nelayan di kampung saya. Tapi mungkin... saya sudah terlalu lama menyimpan kebencian itu."
     hide ayah_azka tajam
 
-    show nanda tenang at center
+    show nanda tenang at left
     nanda "Saya nggak tahu apa yang Om alami dulu, tapi satu hal yang saya tahu, kebencian itu nggak akan membuat Om lebih bahagia. Kita cuma ingin hidup, Om, sama seperti semua orang."
     hide nanda tenang
     show azka memohon at left
@@ -612,7 +632,7 @@ label rumah_azka:
     ayah_azka "(Menghela napas panjang) Kamu benar, Azka... Nanda. Mungkin saya salah selama ini."
     hide ayah_azka menghela_napas
 
-    show nanda tersenyum at center
+    show nanda tersenyum at left
     nanda "(Tersenyum, lega) Terima kasih, Om. Saya harap ke depannya, Om bisa melihat kami sebagai teman, bukan musuh."
     hide nanda tersenyum
     hide ayah_azka menghela_napas
