@@ -91,7 +91,7 @@ label classroom1 :
     show nanda biasa at left
     with moveinleft
     pause
-    classmates "Bukankah dia anak nelayan itu? Orang-orang seperti mereka bau amis"
+    teman "Bukankah dia anak nelayan itu? Orang-orang seperti mereka bau amis"
     
     
     menu:
@@ -106,7 +106,7 @@ label classroom1 :
         show nanda tersenyum at left
         with dissolve
         nanda "Hai,.. Selamat pagi"
-        classmates "Eh, kamu yang anak nelayan ya?? Kamu bau amis habisnya!"
+        teman "Eh, kamu yang anak nelayan ya?? Kamu bau amis habisnya!"
         jump menyapa_done
 
     label tidak_menyapa:

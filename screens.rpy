@@ -3,7 +3,7 @@
 ################################################################################
 
 init offset = -1
-
+define about = False
 
 ################################################################################
 ## Gaya
@@ -23,6 +23,7 @@ style hyperlink_text:
 
 style gui_text:
     properties gui.text_properties("interface")
+    
 
 
 style button:
@@ -31,10 +32,15 @@ style button:
 style button_text is gui_text:
     properties gui.text_properties("button")
     yalign 0.5
-
+    # yoffset 100
+    xalign 0.5
+    size 53
+    idle_color u'#ffffff'
+    outlines [(2, "#000000", 0, 0)]
 
 style label_text is gui_text:
     properties gui.text_properties("label", accent=True)
+    outlines [(2, "#000000", 0, 0)]
 
 style prompt_text is gui_text:
     properties gui.text_properties("prompt")
@@ -297,8 +303,15 @@ screen navigation():
     vbox:
         style_prefix "navigation"
 
-        xpos gui.navigation_xpos
-        yalign 0.5
+        # main_menu is defined in the script file where the main menu screen is created.
+        # It is typically a boolean variable that indicates whether the current screen is the main menu.
+        # The exact location of its definition can vary, but it is usually found in screens.rpy or script.rpy.
+        if main_menu:
+            xalign 0.5
+            yoffset 460
+        else:
+            xoffset 60
+            yalign 0.5
 
         spacing gui.navigation_spacing
 
@@ -314,7 +327,7 @@ screen navigation():
 
         textbutton _("Muat") action ShowMenu("load")
 
-        textbutton _("Setting") action ShowMenu("preferences")
+        textbutton _("Pengaturan") action ShowMenu("preferences")
 
         if _in_replay:
 
@@ -392,17 +405,18 @@ style main_menu_frame:
     xsize 420
     yfill True
 
-    background "gui/overlay/main_menu.png"
+    # background "gui/overlay/main_menu.png"
 
 style main_menu_vbox:
-    xalign 1.0
-    xoffset -30
+    xalign 0.5
+    # xoffset -30
     xmaximum 1200
-    yalign 1.0
-    yoffset -30
+    yalign 0.0
+    yoffset 200
 
 style main_menu_text:
     properties gui.text_properties("main_menu", accent=True)
+    outlines [ (4, "#000000", 0, 0) ]
 
 style main_menu_title:
     properties gui.text_properties("title")
@@ -554,7 +568,7 @@ style return_button:
 screen about():
 
     tag menu
-
+    
     ## Pernyataan 'use' ini mengikutsertakan layar game_menu ke dalam layar ini.
     ## Percabangan vbox lalu di ikutsertakan kedalam viewport di dalam layar
     ## game_menu.
@@ -562,6 +576,7 @@ screen about():
 
         style_prefix "about"
 
+           
         vbox:
 
             label "[config.name!t]"
@@ -571,7 +586,9 @@ screen about():
             if gui.about:
                 text "[gui.about!t]\n"
 
-            text _("Dibuat Dengan {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]")
+
+            text _("Dibuat oleh Rifki Afriadi (NIM : 13223049)")
+
 
 
 style about_label is gui_label
@@ -603,6 +620,10 @@ screen load():
     tag menu
 
     use file_slots(_("Muat"))
+
+    
+        
+    
 
 
 screen file_slots(title):
@@ -738,8 +759,9 @@ style slot_button_text:
 screen preferences():
 
     tag menu
-
-    use game_menu(_("Setting"), scroll="viewport"):
+    
+    use game_menu(_("preferences"), scroll="viewport"):
+        
 
         vbox:
 

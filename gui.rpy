@@ -26,7 +26,7 @@ define config.check_conflicting_properties = True
 ## Warna text pada antarmuka.
 
 ## Warna aksen yang digunakan sepanjang interface sampai pewarnaan text.
-define gui.accent_color = '#000000'
+define gui.accent_color = '#ffffff'
 
 ## Warna yang di gunakan untuk warna tombol text jika di pilih atau di tekan.
 define gui.idle_color =  '#707070'
@@ -36,14 +36,14 @@ define gui.idle_color =  '#707070'
 define gui.idle_small_color = '#ffffff'
 
 ## Warna yang di gunakan untuk tombol dan bar yang di pilih.
-define gui.hover_color = '#000000'
+define gui.hover_color = '#dcdbdb'
 
 ## Warna yang digunakan untuk text tombol ketika di pijit tapi tidak di fokus.
 ## Tombol di pilih jika terdapat di layar saat ini atau value preferensi.
-define gui.selected_color = '#555555'
+define gui.selected_color = '#21cfff'
 
 ## Warna yang di gunakan untuk tombol text ketika tidak bisa di pilih.
-define gui.insensitive_color = '#7070707f'
+define gui.insensitive_color = '#f3f3f3bc'
 
 ## Warna yang di gunakan untuk beberapa bagian dari bar yang tidak terisi. Ini
 ## tidak di gunakan secara langsung, Tapi di gunakan ketika me regenerasi file
@@ -65,7 +65,7 @@ define gui.text_font = "DejaVuSans.ttf"
 define gui.name_text_font = "DejaVuSans.ttf"
 
 ## Font yang digunakan untuk text di luar permainan.
-define gui.interface_text_font = "DejaVuSans.ttf"
+define gui.interface_text_font = "New-September.ttf"
 
 ## Ukuran normal dialog text.
 define gui.text_size = 33
@@ -83,7 +83,13 @@ define gui.label_text_size = 36
 define gui.notify_text_size = 24
 
 ## Ukuran judul permainan.
-define gui.title_text_size = 75
+define gui.title_text_size = 140
+
+## Warna outline teks judul.
+define gui.title_text_outline_color = '#000000'
+
+## Ukuran outline teks judul.
+define gui.title_text_outline_size = 5
 
 
 ## Menu utama dan Menu permainan. ##############################################
@@ -214,9 +220,9 @@ define gui.choice_button_borders = Borders(150, 8, 150, 8)
 define gui.choice_button_text_font = gui.text_font
 define gui.choice_button_text_size = gui.text_size
 define gui.choice_button_text_xalign = 0.5
-define gui.choice_button_text_idle_color = '#707070'
+define gui.choice_button_text_idle_color = '#ffffff'
 define gui.choice_button_text_hover_color = "#ffffff"
-define gui.choice_button_text_insensitive_color = '#7070707f'
+define gui.choice_button_text_insensitive_color = '#ffffff7f'
 
 
 ## Tombol Slot File ############################################################
@@ -250,7 +256,7 @@ define gui.file_slot_rows = 2
 ## antarmuka pengguna.
 
 ## Posisi sisi kiri tombol navigasi, relatif terhadap sisi kiri layar.
-define gui.navigation_xpos = 60
+define gui.navigation_xpos = 200
 
 ## Posisi vertikal indikator lompatan.
 define gui.skip_ypos = 15
@@ -262,7 +268,7 @@ define gui.notify_ypos = 68
 define gui.choice_spacing = 33
 
 ## Buttons in the navigation section of the main and game menus.
-define gui.navigation_spacing = 6
+define gui.navigation_spacing = 3
 
 ## Mengontrol jumlah spasi di antara preferensi.
 define gui.pref_spacing = 15

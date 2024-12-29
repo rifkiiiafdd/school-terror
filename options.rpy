@@ -153,7 +153,7 @@ define config.save_directory = "SchoolTerror-1731331105"
 ##
 ## Ikon yang di tampilkan di taskbar atau dock.
 
-define config.window_icon = "gui/window_icon.png"
+define config.window_icon = "gui/window_icon2.png"
 
 
 ## Pengaturan Build ############################################################
