@@ -83,7 +83,7 @@ define gui.label_text_size = 36
 define gui.notify_text_size = 24
 
 ## Ukuran judul permainan.
-define gui.title_text_size = 140
+define gui.title_text_size = 180
 
 ## Warna outline teks judul.
 define gui.title_text_outline_color = '#000000'

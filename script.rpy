@@ -3,6 +3,7 @@
 # Deklarasikan gambar di bawah line ini, menggunakan pernyataan image.
 # cnth. image eileen happy = "eileen_happy.png"
 image bg blck = "images/pantai.jpg"
+image bg hitam = "images/hitam.jpg"
 image bg bus = "images/bus.jpg"
 image bg credits = "images/credits.jpg"
 image bg cls = "images/cls1.jpg"
@@ -33,6 +34,7 @@ image bg rumah_azka = "images/rumahazka.jpg"
 image ayah_azka biasa = "images/ayahazka.png"
 image ayah_azka tajam = "images/ayahazka.png"
 image nanda diam = "images/nandabiasa.png"
+image siluet = "images/siluet.png"
 image azka ragu = "images/Azka_Neutral.png"
 image nanda berani = "images/nandabiasa.png"
 image meja = "images/broketable.png"
@@ -70,7 +72,11 @@ define reporter = Character("Reporter", color = "#ffffff")
 define narator = Character("Narator", color = "#ffffff")
 
 # Game dimulai disini.
-label start:
+label start :
+    scene bg hitam
+    narator "Cerita ini hanya fiktif belaka"
+    narator "Jika ada kesamaan nama tokoh, tempat kejadian ataupun cerita, itu adalah kebetulan semata dan tidak ada unsur kesengajaan"
+label first_day:
     scene bg blck  
     play music "scene 1 pantai.ogg" fadein 1 fadeout 3
     play sound "scene 1 insturment.ogg" fadein 1 fadeout 1     
@@ -91,7 +97,10 @@ label classroom1 :
     show nanda biasa at left
     with moveinleft
     pause
+    show siluet at right
+    with moveinright
     teman "Bukankah dia anak nelayan itu? Orang-orang seperti mereka bau amis"
+    hide siluet
     
     
     menu:
@@ -106,6 +115,7 @@ label classroom1 :
         show nanda tersenyum at left
         with dissolve
         nanda "Hai,.. Selamat pagi"
+        show siluet at right
         teman "Eh, kamu yang anak nelayan ya?? Kamu bau amis habisnya!"
         jump menyapa_done
 
@@ -114,10 +124,13 @@ label classroom1 :
         show nanda biasa at left
         nanda "..."
         hide nanda biasa
+        show siluet at right
         classmates "“eh anak nelayannya dateng, tuh”"
         jump menyapa_done
 
     label menyapa_done:
+        hide siluet
+        with moveoutright
         play sound "scene 2 abis dikatain bau ikan.ogg" fadein 1 fadeout 6
         show nanda biasa at left
         with dissolve
@@ -184,6 +197,8 @@ label sepulang_sekolah:
     play music "scene 4 (rumah nanda).ogg" fadein 1 fadeout 1
     pause
     if nantang:
+        show nanda luka at left
+        with moveinleft
         show ibu khawatir at right
         with moveinright
         ibu "Nanda, kamu pulang sih, tapi kenapa kamu kelihatan sedih?"

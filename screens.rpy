@@ -4,7 +4,7 @@
 
 init offset = -1
 define about = False
-
+$ about = False
 ################################################################################
 ## Gaya
 ################################################################################
@@ -308,8 +308,12 @@ screen navigation():
         # The exact location of its definition can vary, but it is usually found in screens.rpy or script.rpy.
         if main_menu:
             xalign 0.5
-            yoffset 460
-        else:
+            xoffset -750
+            yoffset 320
+        elif about == True:
+            xoffset 60
+            yalign 1.0
+        else :
             xoffset 60
             yalign 0.5
 
@@ -412,7 +416,7 @@ style main_menu_vbox:
     # xoffset -30
     xmaximum 1200
     yalign 0.0
-    yoffset 200
+    yoffset 150
 
 style main_menu_text:
     properties gui.text_properties("main_menu", accent=True)
@@ -566,6 +570,7 @@ style return_button:
 ## contoh bagaimana membuat layar custom.
 
 screen about():
+    $ about = True
 
     tag menu
     
@@ -580,14 +585,32 @@ screen about():
         vbox:
 
             label "[config.name!t]"
-            text _("Versi [config.version!t]\n")
+            
 
             ## gui.about biasanya di set di options.rpy.
             if gui.about:
                 text "[gui.about!t]\n"
 
 
-            text _("Dibuat oleh Rifki Afriadi (NIM : 13223049)")
+            text _("Dibuat oleh : ")
+            text _("")
+            text _("Nayla Auliya S.      (13023054)  - Projecct Manager                        ")
+            text _("")
+            text _("Rifki Afriadi        (13223079)  - Main Programmer & UI Designer             ")
+            text _("Muammar Qadafi       (13223094)  - Programmer                              ")
+            text _("Faris Riza Maulana   (13223079)  - Programmer                              ")
+            text _("")
+            text _("Naja Kayla           (13023053)  - Game Designer                           ")
+            text _("Nawal Tsana          (13023042)  - Game Designer                           ")
+            text _("Nabila Luna P. R.    (13223059)  - Script Writer                           ")
+            text _("Gabriella Angel L.   (10423033)  - Script Writer                           ")
+            text _("M. Kevin Rizsya Z.   (10423030)  - Quality Assurance                       ")
+            text _("Naia Prihallysta     (13223031)  - Quality Assurance                       ")
+            text _("Muhammad Ihsan       (13223020)  - Graphic Designer                        ")
+            text _("Kyla Asha Mulani     (13223038)  - Graphic Designer                        ")
+            text _("Firza Alya Novrita   (13023036)  - Sound Designer                          ")
+            text _("Afifah Fitri         (13023006)  - Publication Specialist                  ")
+            text _("Dave Tanardi         (18323018)  - UI/UX                                   ")
 
 
 
