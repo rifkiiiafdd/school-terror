@@ -651,7 +651,7 @@ screen load():
 
 screen file_slots(title):
 
-    default page_name_value = FilePageNameInputValue(pattern=_("Halaman {}"), auto=_("Otomatis save"), quick=_("Save cepat"))
+    default page_name_value = FilePageNameInputValue(pattern=_("Halaman {}"), auto=_("simpan otomatis"), quick=_("simpan cepat"))
 
     use game_menu(title):
 

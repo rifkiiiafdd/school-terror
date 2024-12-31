@@ -5,6 +5,7 @@
 image bg blck = "images/pantai.jpg"
 image bg hitam = "images/hitam.jpg"
 image bg bus = "images/bus.jpg"
+image bg hikmah = "images/hikmah.jpg"
 image bg credits = "images/credits.jpg"
 image bg cls = "images/cls1.jpg"
 image bg kantin = "images/kantin.jpg"
@@ -708,6 +709,8 @@ label ed2:
             jump credit
 
 label credit:
+    scene bg hikmah with fade
+    pause
     scene bg credits with fade 
     pause
     return
